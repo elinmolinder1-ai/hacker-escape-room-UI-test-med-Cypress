@@ -1,0 +1,94 @@
+@use '../lib/variables_mixins.scss' as *;
+
+.header {
+    background-color: $esc-bgblue;
+    &__main {
+        padding-left: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+        align-items: flex-start; 
+        &logo {
+            width: 30%;
+            object-fit: contain;      
+        }
+        &title {
+            width:30%;
+            padding-left: 10px;
+            margin-top: 0;
+            margin-bottom: 0px;
+            color: $esc-textlight;
+            font-size: 1.4rem;          
+        }
+        &mobilenavmenu {
+            background-color: $esc-bgblue;
+            color: $esc-textlight;
+            font-size: 3rem;    
+            padding-left: 50px;   
+            text-align: right;
+            border: 0;
+            margin-left: 50px;
+            margin-bottom: 10px;
+        }
+    }
+    &__navcontainer {
+        display: none;
+        &nav {
+            background-color: $esc-bgblue;
+            position:fixed;
+            top:1rem;
+            right:1rem;
+            left:1rem; 
+            bottom: 2rem;
+            opacity: 100;
+            z-index: 3;
+            display: flex;
+            animation: navfadeandscale .25s linear .25s 1 both;
+            justify-content: center;
+            flex-direction: column;
+            &close {
+                position: absolute;
+                top:1rem;
+                right: 1rem;
+                font-size: 2rem;
+                background-color: $esc-bgblue;
+                border: 0;
+                color: $esc-textlight;
+            }
+            &list {
+                list-style: none;
+                display: flex;
+                padding: 0;
+                margin-top: 0; 
+                padding-bottom: 2rem;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            &Item {
+                padding-top: 1rem;
+                font-size: 2rem;
+                margin-top: 2rem;
+                text-decoration: none;
+                color: $esc-textlight;
+            }
+            &Item a{
+                text-decoration: none;
+                color: $esc-textlight;
+            }
+        }
+        &.mobileactive {
+            position: fixed;
+            top: 0;
+            bottom:0;
+            height: 100vh;
+            width: 100vh;
+            display: flex;
+            z-index: 2;
+            background-color: rgb(255, 255, 255,.5);
+            animation: fade 1s linear 0s 1 both;                    
+            }
+        }
+    }

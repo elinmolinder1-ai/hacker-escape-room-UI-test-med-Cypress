@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hacker escape rooms as team building exercises for technical teams">
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/d/1k5h2AX1nipjcw5oalkAmBJpc3xOodBbB">
     <title>Hacker Escape Room</title>
 </head>
 <body>
     <header class="header">
         <div class="header__main">
-            <img class = "header__logo" src="https://lh3.googleusercontent.com/d/1k5h2AX1nipjcw5oalkAmBJpc3xOodBbB" alt="hacker escaperoom logo">
-            <h1 class="header__title">Hacker Escape Room</h1>
+            <img class = "header__mainlogo" src="/images/logo.png" alt="hacker escaperoom logo">
+            <h1 class="header__maintitle">Hacker Escape Room</h1>
+            <button class="header__mainmobilenavmenu">☰</button>
         </div>
-        <nav class="header__nav">
-            <ul class="header__navlist">
-                <li class="header__navItem">
+        <div class="header__navcontainer">
+        <nav class="header__navcontainernav">
+            <button class="header__navcontainernavclose">&#10006;</button>
+            <ul class="header__navcontainernavlist">
+                <li class="header__navcontainernavItem">
                     <a href="#">Play Online</a>
                 </li>
-                <li class="header__navItem">
+                <li class="header__navcontainernavItem">
                     <a href="#">Play on-site</a>
                 </li>
-                <li class="header__navItem">
+                <li class="header__navcontainernavItem">
                     <a href="#">The story</a>
                 </li>
-                <li class="header__navItem">
+                <li class="header__navcontainernavItem">
                     <a href="#">Contact us</a>
                 </li>
             </ul>
-        </nav>   
+        </nav> 
+        </div>
+        
     </header>
     <main>
     <section class="hero">
@@ -42,12 +47,12 @@
     <section class="testimonials">
         <ul class="testimonials__list">
             <li class="testimonials__listItem">
-                <img src="https://lh3.googleusercontent.com/d/1cEqGkDa0i72esM15hekBrfwc-h-HYAvJ" alt="happy customer headshot" class="testimonials__image">
+                <img src="/images/customer.png" alt="happy customer headshot" class="testimonials__image">
                 <p class="testimonials__quote">This is a quote about how amazing this place is and how much fun me and my friends had when we tried it</p>
                 <small class="testimonials__quote__date">John Doe, visited us in September 2021</small>
             </li>
             <li class="testimonials__listItem">
-                <img src="https://lh3.googleusercontent.com/d/1cEqGkDa0i72esM15hekBrfwc-h-HYAvJ" alt="happy customer headshot" class="testimonials__image">
+                <img src="/images/customer.png" alt="happy customer headshot" class="testimonials__image">
                 <p class="testimonials__quote">This is a quote about how amazing this place is and how much fun me and my friends had when we tried it</p>
                 <small class="testimonials__quote__date">John Doe, visited us in September 2021</small>
             </li>
@@ -158,5 +163,6 @@
       </menu>
     </div>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>

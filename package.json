@@ -1,0 +1,25 @@
+{
+  "name": "assignment-1",
+  "version": "1.0.0",
+  "description": "EscapeRoomMobileMenu",
+  "homepage": "https://github.com/nabeelnazeer13/Assignment-1#readme",
+  "bugs": {
+    "url": "https://github.com/nabeelnazeer13/Assignment-1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nabeelnazeer13/Assignment-1.git"
+  },
+  "license": "ISC",
+  "author": "Nabeel",
+  "type": "commonjs",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "sass:build": "sass src/main.scss main.css",
+    "sass:watch": "sass --watch src/main.scss main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

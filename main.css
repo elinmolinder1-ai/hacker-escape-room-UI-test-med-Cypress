@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400..900;1,400..900&display=swap");
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes navfadeandscale {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.header {
+  background-color: #011827;
+}
+.header__main {
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: flex-start;
+}
+.header__mainlogo {
+  width: 30%;
+  object-fit: contain;
+}
+.header__maintitle {
+  width: 30%;
+  padding-left: 10px;
+  margin-top: 0;
+  margin-bottom: 0px;
+  color: #fff;
+  font-size: 1.4rem;
+}
+.header__mainmobilenavmenu {
+  background-color: #011827;
+  color: #fff;
+  font-size: 3rem;
+  padding-left: 50px;
+  text-align: right;
+  border: 0;
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+.header__navcontainer {
+  display: none;
+}
+.header__navcontainernav {
+  background-color: #011827;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
+  bottom: 2rem;
+  opacity: 100;
+  z-index: 3;
+  display: flex;
+  animation: navfadeandscale 0.25s linear 0.25s 1 both;
+  justify-content: center;
+  flex-direction: column;
+}
+.header__navcontainernavclose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background-color: #011827;
+  border: 0;
+  color: #fff;
+}
+.header__navcontainernavlist {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-top: 0;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header__navcontainernavItem {
+  padding-top: 1rem;
+  font-size: 2rem;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: #fff;
+}
+.header__navcontainernavItem a {
+  text-decoration: none;
+  color: #fff;
+}
+.header__navcontainer.mobileactive {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: fade 1s linear 0s 1 both;
+}
+
+html, body {
+  font-family: "Roboto";
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=main.css.map */
