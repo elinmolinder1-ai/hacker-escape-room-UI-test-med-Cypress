@@ -33,14 +33,20 @@
     max-width: 40rem;
 
     &__quote {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         font-style: italic;
         margin: 0;
+        @include desktop {
+            font-size: 1.8rem;
+        }
     }
 
     &__quote__date {
         grid-row: 2 / 3;
         grid-column: 2 / 3;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        @include desktop {
+            font-size: 1.3rem;
+        }
     }
   }
