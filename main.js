@@ -46,37 +46,40 @@ function renderChallenges(challenges, limit = null) {
 
         const buttonText = challenge.type === "online" ? "Take challenge online" : "Book this room";
 
-  li.innerHTML = `
+        li.innerHTML = `
       <article class="challenge">
+      <div class="challenge__imageWrapper">
         <img src="${challenge.image}" alt="${challenge.title}" class="challenge__image">
-
-        <div class="challenge__details">
-          <div class="challenge__rating">
+            <div class="challenge__rating">
             ${"★".repeat(challenge.rating)}${"☆".repeat(5 - challenge.rating)}
-          </div>
-          <span class="challenge__size">${challenge.minParticipants}-${challenge.maxParticipants} participants</span>
+            </div>
         </div>
+
+       
 
         <h3 class="challenge__title">
           ${challenge.title}
-          <span class="challenge__type">${challenge.type}</span>
+          <span class="challenge__type">(${challenge.type})</span>
         </h3>
-
+        
+ <div class="challenge__details">
+          <span class="challenge__size">${challenge.minParticipants}-${challenge.maxParticipants} participants</span>
+        </div>
         <p class="challenge__description">${challenge.description}</p>
 
         ${challenge.labels && challenge.labels.length > 0
-          ? `<div class="challenge__tags">
+                ? `<div class="challenge__tags">
               ${challenge.labels.map(label => `<span class="challenge__tag">#${label}</span>`).join("")}
             </div>`
-          : ""
-        }
+                : ""
+            }
 
         <button class="challenge__bookbutton">${buttonText}</button>
       </article>
     `;
 
-    list.appendChild(li);
-  });
+        list.appendChild(li);
+    });
 }
 
 // ==========================
