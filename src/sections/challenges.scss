@@ -15,13 +15,13 @@
     display: flex;
     max-width: 100%;
     overflow-x: scroll;
+    align-items: stretch;
 
-    &Item {
+    &__listItem {
       list-style-type: none;
+      display: flex;
     }
   }
-
-  
 
   &__buttons {
     align-items: center;
@@ -55,10 +55,13 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 1rem;
   max-width: 26rem;
   min-width: 24rem;
   overflow: hidden;
+  scroll-snap-align: start;
+
 
   &__title {
     font-weight: normal;
@@ -99,14 +102,57 @@
   }
 
   &__bookbutton {
-    @include button($esc-red, $esc-textlight);
+    margin-top:auto;
     align-self: flex-end;
     font-size: 1.2rem;
     margin: 0 1rem 1rem;
+    @include button($esc-red, $esc-textlight);
+
+    width:auto; //hindrar från att fylla hela bredden
+    max-width: 20rem; 
+    white-space: nowrap; //hindrar från radbrytning
+    padding: 0.5rem 1rem; //höjd
   }
 
   &__tags{
     margin: 1rem 1rem;
     font-size: 1.1rem;
+  }
+}
+
+//SIDSPECIFIK LAYOUT HOMEPAGE
+.homepage .challenges__list{
+  display:flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding:1rem;
+
+    .challenges__listItem{
+      flex:0 0 33.33%;
+      scroll-snap-align: start;
+      display:flex;
+    }
+    @media (max-width: 768px){
+      .challenges__listItem{
+        flex:0 0 100%; //visar ett kort i taget 
+      }
+    }
+}
+
+//SIDSPECIFIK LAYOUT ALL-CHALLENGES
+.allchallenges .challenges__list{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:1rem;
+  padding:1rem;
+
+  @media (max-width: 768px){
+    grid-template-columns: 1fr;
+  }
+  
+  .challenges__listItem{
+    display:flex;
   }
 }
