@@ -21,6 +21,8 @@
     }
   }
 
+  
+
   &__buttons {
     align-items: center;
     display: flex;
@@ -76,7 +78,7 @@
     display: flex;
     gap: 0.5rem;
     padding: 0;
-
+    color: $esc-red;
     
   }
 
@@ -84,12 +86,6 @@
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
-  }
-
-  &__rating {
-    display: flex;
-    gap:4px;
-    color: $esc-red;
   }
 
   &__size {
@@ -107,5 +103,10 @@
     align-self: flex-end;
     font-size: 1.2rem;
     margin: 0 1rem 1rem;
+  }
+
+  &__tags{
+    margin: 1rem 1rem;
+    font-size: 1.1rem;
   }
 }
