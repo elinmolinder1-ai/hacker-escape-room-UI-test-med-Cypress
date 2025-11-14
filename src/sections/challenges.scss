@@ -51,17 +51,16 @@
 
 .challenge {
   background-color: white;
-  border-radius: 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 1rem;
-  max-width: 26rem;
+  max-width: 28rem;
   min-width: 24rem;
   overflow: hidden;
   scroll-snap-align: start;
-
+  
 
   &__title {
     font-weight: normal;
@@ -77,12 +76,29 @@
     margin: 0 1rem;
   }
 
+  &__imageWrapper{
+    position:relative;
+    width:100%;
+    height:auto;
+  }
+  &__image{
+    display:block;
+    width:100%;
+    height: auto;
+  }
+
   &__rating {
     display: flex;
     gap: 0.5rem;
     padding: 0;
     color: $esc-red;
-    
+    position:absolute;
+    bottom:0.3rem;
+    left:0.5rem;
+    padding: 0.3rem 0.6rem;
+    color: $esc-red;
+    z-index:2;
+    font-size: 30px;
   }
 
   &__details {
@@ -93,7 +109,8 @@
 
   &__size {
     font-size: 1.0rem;
-    padding-top: 3px;
+    padding-top: -5px;
+    margin:0 0.4rem;
   }
 
   &__description {
