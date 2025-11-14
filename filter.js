@@ -1,11 +1,33 @@
+const filterUserInput = document.querySelector(".filter__user-input");
+let filterState = {
+    search:"",
+    online: false,
+    onSite: false,
+    tags: [],
+    minRating: 0,
+    maxRating: 5
+};
+
+filterUserInput.addEventListener("input", (e) =>{
+    filterState.search = e.target.value.toLowerCase();
+    applyFilters();
+})
+
+function applyFilters(){
+    console.log('Search-filter:', filterState.search)
+}
+
+
+
+
 //toggle online/offline checkbox apperence
 function toggleCheckbox() {
     var checkBox = document.getElementById("myCheck");
     var text = document.getElementById("text");
-    if (checkBox.checked == true){
+    if (checkBox.checked == true) {
         text.style.display = "block";
     } else {
-       text.style.display = "none";
+        text.style.display = "none";
     }
 }
 
@@ -18,7 +40,7 @@ function toggleTag(tagElement) {
 
     if (index > -1) {
         selectedTags.splice(index, 1);
-        tagElement.classList.remove("checked");s
+        tagElement.classList.remove("checked"); s
     } else {
         selectedTags.push(tag);
         tagElement.classList.add("checked");
