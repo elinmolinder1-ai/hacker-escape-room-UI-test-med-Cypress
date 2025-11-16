@@ -23,18 +23,37 @@ function checkBox(event) {
   onsiteBox.addEventListener('change', checkBox);
 
 
-//adds rating to array
-const selectedRating = [];
-
-//toogle star apperance on button press
-const stars = document.querySelectorAll(".rating__stars .fa-star");
-
-stars.forEach(star => {
+//toggle star button press + calculate amount of stars
+const minStars = document.querySelectorAll("#minRating .fa-star");
+minStars.forEach((star, index) => {
     star.addEventListener("click", () => {
-        star.classList.toggle("checked");
+        minRating = index + 1; 
+
+        //change star apperance
+        minStars.forEach((s, i) => {
+            if (i < minRating) s.classList.add("checked");
+            else s.classList.remove("checked");
+        });
+
+        console.log("Min Rating:", minRating);
     });
 });
 
+//same but for maximum star rating
+const maxStars = document.querySelectorAll("#maxRating .fa-star");
+maxStars.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        maxRating = index + 1; 
+
+        
+        maxStars.forEach((s, i) => {
+            if (i < maxRating) s.classList.add("checked");
+            else s.classList.remove("checked");
+        });
+
+        console.log("Max Rating:", maxRating);
+    });
+});
 
 
 //toogle tag state, added to selectedTags array if checked
