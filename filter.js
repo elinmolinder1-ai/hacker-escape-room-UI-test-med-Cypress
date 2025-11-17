@@ -1,6 +1,7 @@
 const onlineCheckbox = document.querySelector(".filter__online");
 const onsiteCheckbox = document.querySelector(".filter__on-site");
-
+const ratingStarsMin = document.querySelectorAll(".rating__stars--min .fa-star");
+const ratingStarsMax = document.querySelectorAll(".rating__stars--max .fa-star");
 const filterUserInput = document.querySelector(".filter__user-input");
 let allChallengesData = []; //Spara api-data
 let filterState = {
@@ -11,6 +12,43 @@ let filterState = {
     minRating: 0,
     maxRating: 5
 };
+
+ratingStarsMin.forEach((star, index)=>{
+    star.addEventListener("click", ()=>{
+        const selected = index+1;
+        filterState.minRating = selected;
+
+        ratingStarsMin.forEach((s,i) =>{
+            if(i<selected){
+                s.classList.add("checked");
+            }
+            else{
+                s.classList.remove("checked");
+            }
+        })
+
+        applyFilters();
+    });
+});
+
+ratingStarsMax.forEach((star, index)=>{
+    star.addEventListener("click", ()=>{
+        const selected = index+1;
+        filterState.maxRating = selected;
+
+        ratingStarsMax.forEach((s,i) =>{
+            if(i<selected){
+                s.classList.add("checked");
+            }
+            else{
+                s.classList.remove("checked");
+            }
+        })
+
+        applyFilters();
+    });
+});
+
 
 onsiteCheckbox.addEventListener("change", () => {
     filterState.onSite = onsiteCheckbox.checked;
@@ -97,6 +135,17 @@ function applyFilters() {
             if(filterState.onSite && challenge.type ==='onsite') return true;
             return false;
         });
+    }
+
+    if(filterState.minRating !==0 || filterState.maxRating !==0){
+        filtered = filtered.filter(challenge =>{
+            const rating = challenge.rating;
+
+            const OverMin = filterState.minRating === 0 || rating >= filterState.minRating;
+            const underMax = filterState.maxRating === 5 || rating <= filterState.maxRating;
+
+            return OverMin && underMax;
+        })
     }
 
     renderChallenges(filtered);
