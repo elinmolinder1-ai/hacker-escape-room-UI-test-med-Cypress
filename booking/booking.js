@@ -29,7 +29,6 @@ const time_booking = document.querySelector('#booking-time-select');
 const participants_booking = document.querySelector('#booking-participants-select');
 const challenge_title1 = document.querySelector('#booking-room-title-step1');
 const challenge_title2 = document.querySelector('#booking-room-title-step2');
-const active_modal_stage = document.querySelector('.booking-step-active').id;
 const step_1 = document.querySelector('#booking-step-1');
 const step_2 = document.querySelector('#booking-step-2');
 const step_3 = document.querySelector('#booking-step-3');
@@ -52,12 +51,14 @@ function create_fetch_url () {
         const date_url = date_booking.value;
         const res_url = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${date_url}&challenge=${challenge_selected.id}`;
     console.log(res_url); //for testing
-    fetch_slots(res_url);
-    change_modal_step();}
-}
+    fetch_slots(res_url)
+        .then((Response) => {
+        change_modal_step();});
+}}
 
 function change_modal_step() {
-    console.log(step_1.classList);
+    const active_modal_stage = document.querySelector('.booking-step-active').id;
+    console.log(active_modal_stage);
     if (active_modal_stage == 'booking-step-1') {
         step_1.classList.remove('booking-step-active');
         step_2.classList.add('booking-step-active');
@@ -96,35 +97,45 @@ function populateslots() {
 }
 
 function capturebookinginfo () {
-    /* const name_booking = document.querySelector('#nameinput').textContent;
-const email_booking = document.querySelector('#emailinput').textContent;
-const slot_booking = document.querySelector('#dates').value;
-
-    if (!name_booking) {
+   
+    if (!name_booking.value) {
         alert("name");
     }
     else {
-        if (!email_booking) {
+        if (!email_booking.value) {
             alert("emaail");
         }
         else {
-            if (!slot_booking) {
+            if (!time_booking.value) {
                 alert("slot");
             }
-            else { */
-                bookobj.challenge = id;
-                bookobj.name = name_booking;
-                bookobj.email = email_booking;
-                bookobj.date = date_booking;
-                bookobj.slot = time_booking;
-                //bookobj.partic = document.querySelector('#participants_booking').value;
-                console.log(bookobj);
-
+            else { 
+                final_booking_object.challenge = challenge_selected.id;
+                final_booking_object.name = name_booking.value;
+                final_booking_object.email = email_booking.value;
+                final_booking_object.date = date_booking.value;
+                final_booking_object.time = time_booking.value;
+                final_booking_object.participants = Number(participants_booking.value);
+                console.log(final_booking_object);//testing
+                post_booking ()
+                .then((Response) => {
+                    change_modal_step();});
+                }
             }
-        //}
-   // }
+            }}
 
-//}
+async function post_booking () {
+    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(final_booking_object),
+});
+const data = await res.json();
+console.log(data);
+}
+
 searchslots_button.addEventListener('click', create_fetch_url);
 makebooking_button.addEventListener('click', capturebookinginfo);
 
