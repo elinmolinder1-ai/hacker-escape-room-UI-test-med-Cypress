@@ -26,7 +26,6 @@ ratingStarsMin.forEach((star, index)=>{
                 s.classList.remove("checked");
             }
         })
-
         applyFilters();
     });
 });
