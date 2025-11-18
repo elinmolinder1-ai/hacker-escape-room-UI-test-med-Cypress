@@ -13,16 +13,16 @@ let filterState = {
     maxRating: 5
 };
 
-ratingStarsMin.forEach((star, index)=>{
-    star.addEventListener("click", ()=>{
-        const selected = index+1;
+ratingStarsMin.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        const selected = index + 1;
         filterState.minRating = selected;
 
-        ratingStarsMin.forEach((s,i) =>{
-            if(i<selected){
+        ratingStarsMin.forEach((s, i) => {
+            if (i < selected) {
                 s.classList.add("checked");
             }
-            else{
+            else {
                 s.classList.remove("checked");
             }
         })
@@ -30,16 +30,16 @@ ratingStarsMin.forEach((star, index)=>{
     });
 });
 
-ratingStarsMax.forEach((star, index)=>{
-    star.addEventListener("click", ()=>{
-        const selected = index+1;
+ratingStarsMax.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        const selected = index + 1;
         filterState.maxRating = selected;
 
-        ratingStarsMax.forEach((s,i) =>{
-            if(i<selected){
+        ratingStarsMax.forEach((s, i) => {
+            if (i < selected) {
                 s.classList.add("checked");
             }
-            else{
+            else {
                 s.classList.remove("checked");
             }
         })
@@ -128,16 +128,16 @@ function applyFilters() {
         })
     };
 
-    if(filterState.online || filterState.onSite){
-        filtered = filtered.filter(challenge=>{
-            if(filterState.online && challenge.type === 'online') return true;
-            if(filterState.onSite && challenge.type ==='onsite') return true;
+    if (filterState.online || filterState.onSite) {
+        filtered = filtered.filter(challenge => {
+            if (filterState.online && challenge.type === 'online') return true;
+            if (filterState.onSite && challenge.type === 'onsite') return true;
             return false;
         });
     }
 
-    if(filterState.minRating !==0 || filterState.maxRating !==0){
-        filtered = filtered.filter(challenge =>{
+    if (filterState.minRating !== 0 || filterState.maxRating !== 0) {
+        filtered = filtered.filter(challenge => {
             const rating = challenge.rating;
 
             const OverMin = filterState.minRating === 0 || rating >= filterState.minRating;
@@ -147,7 +147,46 @@ function applyFilters() {
         })
     }
 
+    if (filterState.tags.length > 0) {
+        filtered = filtered.filter(challenge => {
+            if (!challenge.labels) return false;
+
+            return filterState.tags.every(tag =>
+                challenge.labels.includes(tag)
+            );
+        });
+    }
+
+
     renderChallenges(filtered);
 
     console.log('Search-filter:', filterState.search)
 }
+
+//toogle tag state, added to selectedTags array if checked
+const selectedTags = [];
+const tagElement = document.querySelectorAll('.tag');
+
+function toggleTag(event) {
+    const tagElement = event.currentTarget;
+    const tag = tagElement.textContent.trim().toLowerCase(); //lowercase and trim to be same as in API
+    const index = selectedTags.indexOf(tag);
+
+    if (index > -1) {
+        selectedTags.splice(index, 1);
+        tagElement.classList.remove("checked");
+    } else {
+        selectedTags.push(tag);
+        tagElement.classList.add("checked");
+    }
+
+    filterState.tags = selectedTags;
+    applyFilters();
+
+    console.log("Selected tags:", selectedTags);
+}
+
+//adds eventListener to all tags
+tagElement.forEach(x => {
+    x.addEventListener('click', toggleTag);
+});
