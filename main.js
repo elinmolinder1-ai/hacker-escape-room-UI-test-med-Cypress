@@ -110,7 +110,7 @@ async function initAll() {
 
         const all = await getChallenges();
         const sorted = [...all].sort(
-            (a, b) => (b.rating ?? 0) - (a.rating ?? 0)).slice(0, 10);
+            (a, b) => (b.rating ?? 0) - (a.rating ?? 0)).slice(0, 15);
 
         listElAll.innerHTML = '';
         sorted.forEach(ch => {
