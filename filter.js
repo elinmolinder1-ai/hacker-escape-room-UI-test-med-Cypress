@@ -19,6 +19,7 @@ function checkBox(event) {
 
     } console.log(selectedTypes);
 }
+  //eventListeners for both checkboxes
   onlineBox.addEventListener('change', checkBox);
   onsiteBox.addEventListener('change', checkBox);
 
@@ -55,6 +56,17 @@ maxStars.forEach((star, index) => {
     });
 });
 
+//test array for tags/labels - to be replaced with actual challenges
+const ch = [
+    {
+        "id": 1,
+        "labels": ["web", "linux", "javascript"]
+    },
+    {
+        "id": 2,
+        "labels": ["web", "linux"]
+    }
+];
 
 //toogle tag state, added to selectedTags array if checked
 const selectedTags = [];
@@ -63,7 +75,7 @@ const tagElement = document.querySelectorAll('.tag');
 
 function toggleTag(event) {
     const tagElement = event.currentTarget;
-    const tag = tagElement.textContent.toLowerCase(); //lowercase to be same as in API
+    const tag = tagElement.textContent.trim().toLowerCase(); //lowercase and trim to be same as in API
     const index = selectedTags.indexOf(tag);
 
     if (index > -1) {
@@ -75,30 +87,20 @@ function toggleTag(event) {
     }
 
     console.log("Selected tags:", selectedTags);
+    //call function to find matching card ids
+    updateLabelId();
 }
+
+//findsand keeps ids of cards that contain any selected tag
+function updateLabelId () {
+const findIdByTags = ch.filter(c => //filter though each challange
+      c.labels.some(label => selectedTags.includes(label))) //find any labels that match tag
+       .map(c => c.id); //get only id number
+
+console.log("ID by Tags: ", findIdByTags);
+}
+
 //adds eventListener to all tags
 tagElement.forEach(x => {
 x.addEventListener('click', toggleTag);
 });
-
-
-//test array for tags/labels
-const challenges = [
-    {
-        "id": 1,
-        "labels": ["web", "linux", "javascript"]
-    },
-    {
-        "id": 2,
-        "labels": ["web", "linux"]
-    }
-];
-
-//under construction
-// const findIdByTags = challenges.filter(c => 
-      //c.labels.some(label => selectedTags.includes(label)))
-      // .map(c => c.id);
-
-//console.log("ID by Tags: " + findIdByTags);
-
-
