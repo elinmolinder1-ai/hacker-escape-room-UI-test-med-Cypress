@@ -3,11 +3,11 @@ const navmenu = document.querySelector('.header__navcontainer')
 const closemenu = document.querySelector('.header__navcontainernavclose')
 
 
-//mobilemenu.addEventListener("click", () => {
-//navmenu.classList.toggle('mobileactive'); });
+mobilemenu.addEventListener("click", () => {
+navmenu.classList.toggle('mobileactive'); });
 
-//closemenu.addEventListener("click", () => {
-//navmenu.classList.toggle('mobileactive'); });
+closemenu.addEventListener("click", () => {
+navmenu.classList.toggle('mobileactive'); });
 
 
 //Funktion to download api, is provided in task 4 Specifikation ==> API: https://lernia-sjj-assignments.vercel.app/
