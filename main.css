@@ -485,11 +485,12 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 1rem;
-  max-width: 26rem;
+  max-width: 28rem;
   min-width: 24rem;
   overflow: hidden;
-  position: absolut;
+  scroll-snap-align: start;
 }
 .challenge__title {
   font-size: 1rem;
@@ -548,16 +549,19 @@
   margin: 1rem 1rem;
 }
 .challenge__buttonWrapper {
+  margin-top: auto;
   display: flex;
   justify-content: flex-end;
-  padding: 0 1rem 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
 }
 .challenge__labels {
   margin: 1rem 1rem;
+  flex: 0 0 auto;
 }
 .challenge__bookbutton {
-  margin-top: auto;
   font-size: 0.9rem;
+  margin-top: 3rem;
   background-color: #E3170A;
   border-radius: 0.4rem;
   border-width: 0;
@@ -569,6 +573,7 @@
   max-width: 20rem;
   width: auto;
   padding: 0.5rem 1rem;
+  white-space: nowrap;
 }
 
 .filters {
