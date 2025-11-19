@@ -73,9 +73,9 @@ function createChallengeLi(ch) {
       ${labels.length ? `<div class="challenge__labels">${labels.map(l => `<span class="tags">#${l}</span>`).join(' ')}</div>` : ''}
         
       <div class="challenge__buttonWrapper">
-      <button class="challenge__bookbutton">
+      <a href="/booking/booking.html" class="challenge__bookbutton">
         ${type === 'onsite' ? 'Book this room' : 'Take challenge online'}
-      </button>
+      </a>
       </div>
     </article>
   `;
