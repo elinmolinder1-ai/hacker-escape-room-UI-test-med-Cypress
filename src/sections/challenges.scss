@@ -18,7 +18,6 @@
     max-width: 100%;
     overflow-x: scroll;
 
-
     &Item {
       list-style-type: none;
 
@@ -57,11 +56,13 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 1rem;
-  max-width: 26rem;
+  max-width: 28rem;
   min-width: 24rem;
+
   overflow: hidden;
-  position: absolut;
+  scroll-snap-align: start;
 
   &__title {
     //font-weight: normal;
@@ -130,7 +131,6 @@
 
   &__size {
     font-size: 0.9rem;
-
   }
 
   &__description {
@@ -139,19 +139,21 @@
   }
 
   &__buttonWrapper {
+    margin-top: auto; // trycker ner knappen till botten
     display: flex;
     justify-content: flex-end;
-    padding: 0 1rem 1rem;
+    padding-bottom:1rem;
+    padding-right:1rem;
   }
 
   &__labels {
     margin: 1rem 1rem;
+    flex: 0 0 auto;
   }
 
   &__bookbutton {
-    margin-top: 3rem;
     font-size: 0.9rem;
-    
+    margin-top:3rem;
     @include button($esc-red, $esc-textlight);
     max-width: 20rem;
     width: auto; //hindrar från att fylla hela bredden
