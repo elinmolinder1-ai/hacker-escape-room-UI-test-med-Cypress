@@ -69,8 +69,8 @@ function createChallengeLi(ch) {
 
       <p class="challenge__description">${description}</p>
 
-      <!-- valfritt: visa etiketter om du har stil för dem -->
-      ${labels.length ? `<p class="challenge__labels">${labels.map(l => `#${l}`).join(' ')}</p>` : ''}
+      <!-- valfritt: visa etiketter om du har stil för dem--> 
+      ${labels.length ? `<div class="challenge__labels">${labels.map(l => `<span class="tags">#${l}</span>`).join(' ')}</div>` : ''}
         
       <div class="challenge__buttonWrapper">
       <button class="challenge__bookbutton">
