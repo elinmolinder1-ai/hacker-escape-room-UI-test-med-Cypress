@@ -159,8 +159,6 @@ function closeFilter() {
 
 
 //MODAL
-
-
 async function loadBookingModal(challenge) {
     const res = await fetch('/booking/booking.html');
     const html = await res.text();
