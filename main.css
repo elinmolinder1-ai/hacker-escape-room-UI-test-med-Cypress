@@ -576,6 +576,25 @@
   white-space: nowrap;
 }
 
+.booking-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+.booking-modal.is-visible {
+  display: block;
+}
+.booking-modal .booking-step {
+  background: #fff;
+  margin: 5% auto;
+  padding: 2rem;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
 .filters {
   display: none;
   flex-direction: column;
