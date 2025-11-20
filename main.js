@@ -192,12 +192,15 @@ async function loadBookingModal(challenge) {
 
         modal.querySelector('#booking-room-title-step1').textContent = challenge.title;
 
-        document.body.appendChild(modal); // lägg till i all.html
-        if(overlay) document.body.appendChild(overlay);
+        // Ta bort ev. tidigare instanser
+        document.querySelector('.booking-overlay')?.remove();
+        document.querySelector('#booking-modal')?.remove();
 
+        if (overlay) document.body.appendChild(overlay);
+        document.body.appendChild(modal); // lägg till i all.html
         overlay?.classList.add('is-visible');
         modal.classList.add('is-visible');
-    } catch (err){
+    } catch (err) {
         console.error(loadBookingModal, err);
     }
 }
