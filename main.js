@@ -172,10 +172,11 @@ async function loadBookingModal(challenge) {
     
     document.body.appendChild(modal); // lägg till i all.html
     modal.classList.add('is-visible');
+}
 
-
-    //CLOSE MODAL
+    /*CLOSE MODAL
     modal.querySelector('.booking-overlay').addEventListener('click', () => modal.remove());
     const closeBtn = modal.querySelector('#booking-close');
     if(closeBtn) closeBtn.addEventListener('click', () => modal.remove());
 }
+    */
