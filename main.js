@@ -73,16 +73,17 @@ function createChallengeLi(ch) {
       ${labels.length ? `<div class="challenge__labels">${labels.map(l => `<span class="tags">#${l}</span>`).join(' ')}</div>` : ''}
         
       <div class="challenge__buttonWrapper">
-      <a href="/booking/booking.html" class="challenge__bookbutton">
+      <button class="challenge__bookbutton">
         ${type === 'onsite' ? 'Book this room' : 'Take challenge online'}
-      </a>
+      </button>
       </div>
     </article>
   `;
 
-  const button = li.querySelector('.challenge__bookbutton');
-  button.addEventListener('click', () => {
-    openBookingModal(ch)}); // din modal-funktion
+const button = li.querySelector('.challenge__bookbutton');
+button.addEventListener('click', () => {
+  loadBookingModal(ch); // öppnar modal med challenge-data
+});
     return li;
 }
 
@@ -159,15 +160,24 @@ function closeFilter() {
 
 //MODAL
 
-function openBookingModal(){
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('arial-modal', 'true');
 
-    modal.innerHTML = `
-    <div class="modal__overlay"></div>
-    <div class="modal__content">
-        <h2> Booking </h2>
-        <`
-    }
+async function loadBookingModal(challenge) {
+    const res = await fetch('/booking/booking.html');
+    const html = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const overlay = doc.querySelector('.booking-overlay');
+    const modal = doc.querySelector('#booking-modal');
+
+    modal.querySelector('#booking-room-title-step1').textContent = challenge.title;
+    
+    document.body.appendChild(modal); // lägg till i all.html
+    modal.classList.add('is-visible');
+
+
+    //CLOSE MODAL
+    modal.querySelector('.booking-overlay').addEventListener('click', () => modal.remove());
+    const closeBtn = modal.querySelector('#booking-close');
+    if(closeBtn) closeBtn.addEventListener('click', () => modal.remove());
+}
