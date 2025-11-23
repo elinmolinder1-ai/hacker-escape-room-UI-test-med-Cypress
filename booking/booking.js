@@ -8,44 +8,35 @@
 //import {challenge_selected} from './main.js';
 
 //remove when connecting actual challenge object
-const challenge_selected = {id:1, 
-            type:"onsite", 
-            title: "Project: X of Doom",
-            description: "Try your hardest and succeed. Or fail",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 1,
-            image: "https://placekitten.com/640/480",
-            labels: ['linux, web, javascript']
-        };
+
+let challenge_selected; // will be set by initBookingModal
+
+// move DOM-dependent variables here but leave them unassigned
+let date_booking;
+let name_booking;
+let email_booking;
+let time_booking;
+let participants_booking;
+let challenge_title1;
+let challenge_title2;
+let step_1;
+let step_2;
+let step_3;
+let searchslots_button;
+let makebooking_button;
+
 //declare array to store times available
 let slots = [];
 
-//declare variables to be used with DOM API
-const date_booking =document.querySelector('#booking-date-input');
-const name_booking = document.querySelector('#booking-name-input');
-const email_booking = document.querySelector('#booking-email-input');
-const time_booking = document.querySelector('#booking-time-select');
-const participants_booking = document.querySelector('#booking-participants-select');
-const challenge_title1 = document.querySelector('#booking-room-title-step1');
-const challenge_title2 = document.querySelector('#booking-room-title-step2');
-const step_1 = document.querySelector('#booking-step-1');
-const step_2 = document.querySelector('#booking-step-2');
-const step_3 = document.querySelector('#booking-step-3');
-const searchslots_button = document.querySelector('#booking-step1-next');
-const makebooking_button = document.querySelector('#booking-step2-next');
-
 const final_booking_object = {};
 
-challenge_title1.textContent = challenge_selected.title;
-challenge_title2.textContent = challenge_selected.title;
-
+// existing functions that rely on challenge_selected should keep using this top-level variable
 //validate input and create url to fetch available slots based on challenge id and date chosen - DOM interaction. 
 //Also calls fetch function
 //active on button click
 function create_fetch_url () {
     if (!date_booking.value) {
-        alert("the fuck");
+        alert("enter correct date");
     }
     else {
         const date_url = date_booking.value;
@@ -136,13 +127,38 @@ const data = await res.json();
 console.log(data);
 }
 
-searchslots_button.addEventListener('click', create_fetch_url);
-makebooking_button.addEventListener('click', capturebookinginfo);
+// expose initializer to be called after modal is appended to document
+window.initBookingModal = function (ch) {
+    challenge_selected = ch;
 
-//Back to all.html
-const backtoChallenges_button = document.querySelector("#booking-close");
-backtoChallenges_button.addEventListener('click', () => {
+    // query the DOM now that modal is in the document
+    date_booking = document.querySelector('#booking-date-input');
+    name_booking = document.querySelector('#booking-name-input');
+    email_booking = document.querySelector('#booking-email-input');
+    time_booking = document.querySelector('#booking-time-select');
+    participants_booking = document.querySelector('#booking-participants-select');
+    challenge_title1 = document.querySelector('#booking-room-title-step1');
+    challenge_title2 = document.querySelector('#booking-room-title-step2');
+    step_1 = document.querySelector('#booking-step-1');
+    step_2 = document.querySelector('#booking-step-2');
+    step_3 = document.querySelector('#booking-step-3');
+    searchslots_button = document.querySelector('#booking-step1-next');
+    makebooking_button = document.querySelector('#booking-step2-next');
 
-window.location.href = "/all.html";
-});
+    // populate titles
+    if (challenge_title1) challenge_title1.textContent = challenge_selected.title;
+    if (challenge_title2) challenge_title2.textContent = challenge_selected.title;
+
+    // attach event listeners (guard nulls)
+    if (searchslots_button) searchslots_button.addEventListener('click', create_fetch_url);
+    if (makebooking_button) makebooking_button.addEventListener('click', capturebookinginfo);
+
+    // back/close button
+    const backtoChallenges_button = document.querySelector("#booking-close");
+    if (backtoChallenges_button) {
+        backtoChallenges_button.addEventListener('click', () => {
+            window.location.href = "/all.html";
+        });
+    }
+};
 
