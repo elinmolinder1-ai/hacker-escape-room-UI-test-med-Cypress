@@ -184,6 +184,8 @@ async function loadFilterChallenges() {
 
     } catch (err) {
         console.error('loadFilterChallenges error', err);
+        const statusElAll = document.querySelector('#all-status');
+    if (statusElAll) statusElAll.textContent = 'Could not load the filter : ' + err.message;
     }
 }
 
@@ -210,9 +212,10 @@ async function loadBookingModal(challenge) {
         modal.classList.add('is-visible');
     } catch (err) {
         console.error(loadBookingModal, err);
-    }
+        const statusElAll = document.querySelector('all-status');
+        alert('Could not open booking modal, try again later!');
 }
-
+}
 /*CLOSE MODAL
 modal.querySelector('.booking-overlay').addEventListener('click', () => modal.remove());
 const closeBtn = modal.querySelector('#booking-close');
