@@ -110,6 +110,11 @@ function initializeFilters() {
 
         list.innerHTML = "";
 
+        if(challenges.length===0){
+            list.innerHTML='<p class="no-results">Your search did not match any challenges</p>';
+            return;
+        }
+
         challenges.forEach(ch => {
             list.appendChild(createChallengeLi(ch));
         });
