@@ -13,16 +13,15 @@ closemenu.addEventListener("click", () => {
 
 
 //Funktion to download api, is provided in task 4 Specifikation ==> API: https://lernia-sjj-assignments.vercel.app/
-//Returns a list of challenges
-async function getChallenges() {
+export async function getChallenges() {
     const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
     const data = await res.json();
     return data.challenges;
 };
 
 
-//Function to create list for every challenge
-function createChallengeLi(ch) {
+//unktion to create list challenges
+export function createChallengeLi(ch) {
     const {
         title,
         description,
@@ -112,7 +111,6 @@ async function initMain() {
     }
 }
 
-
 //Function to get all challenges and show the 15 best rated on all-challenges. 
 const listElAll = document.getElementById('all-list');
 const statusElAll = document.getElementById('all-status');
@@ -169,7 +167,12 @@ async function loadFilterChallenges() {
         challengeList.parentNode.insertBefore(filterSection, challengeList);
         filterSection.classList.add('is-visible');
 
-        //Hide the button filterBtnChallenges
+        //Kopplar in filter.js genom initializeFilters
+        if (typeof initializeFilters === "function") {
+            initializeFilters();
+        };
+
+        //Göm knappen om den finns
         if (filterBtnChallenges) filterBtnChallenges.style.display = 'none';
 
         //Add a closeing-button 
@@ -189,6 +192,8 @@ async function loadFilterChallenges() {
     }
 }
 
+//gör loadFilterChallenges tillgänglig för klick i html
+window.loadFilterChallenges = loadFilterChallenges;
 
 //MODAL function to load the HTML from booking.html
 async function loadBookingModal(challenge) {
