@@ -126,7 +126,7 @@ function initializeFilters() {
         if (filterState.search.trim() !== "") {
             filtered = filtered.filter(challenge => {
                 const title = challenge.title.toLowerCase();
-                const description = challenge.description.toLowerCase();
+                const description = challenge.description.toLowerCase(); 
 
                 return (title.includes(filterState.search)) ||
                     description.includes(filterState.search);
@@ -145,10 +145,10 @@ function initializeFilters() {
             filtered = filtered.filter(challenge => {
                 const rating = challenge.rating;
 
-                const OverMin = filterState.minRating === 0 || rating >= filterState.minRating;
+                const overMin = filterState.minRating === 0 || rating >= filterState.minRating;
                 const underMax = filterState.maxRating === 5 || rating <= filterState.maxRating;
 
-                return OverMin && underMax;
+                return overMin && underMax;
             })
         }
 
@@ -156,7 +156,7 @@ function initializeFilters() {
             filtered = filtered.filter(challenge => {
                 if (!challenge.labels) return false;
 
-                return filterState.tags.some(tag =>
+                return filterState.tags.some(tag => //Updated to find challange with any one tag selected
                     challenge.labels.includes(tag)
                 );
             });
