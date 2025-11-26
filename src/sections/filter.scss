@@ -1,0 +1,167 @@
+@use '../lib/variables_mixins.scss' as *;
+
+
+.filters {
+    display: none;
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+
+    @include desktop {
+
+        width: 70%;
+        border: 1px solid rgb(216, 216, 216);
+
+
+    }
+
+    &.is-visible{
+        display: block;
+    }
+
+    &__title {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+
+
+    }
+}
+
+
+.filter {
+    margin-bottom: 2rem;
+
+    @include desktop {
+        float: left;
+        width: 33.33%;
+    }
+
+    &__title {
+        font-size: 1rem;
+
+    }
+}
+
+.type {
+
+    &__option {
+        padding-bottom: 0.5rem;
+    }
+}
+
+.rating {
+
+    @include desktop {
+        float: left;
+        width: 33.33%;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
+    }
+
+    &__stars {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 0.25rem;
+        //direction: rtl; //för att få stjärnorna till vänster lyser upp
+        cursor: pointer;
+    }
+
+    .fa-star {
+        font-size: 1.2rem;
+        color: gray;
+    }
+
+    .fa-star.checked {
+        color: orange;
+    }
+
+    .fa-star:hover,
+    .fa-star:hover~.fa-star {
+        color: orange;
+    }
+
+    p {
+        padding: 0 1rem;
+
+    }
+
+
+}
+
+.tags {
+
+    @include desktop {
+        float: left;
+        width: 33.33%;
+
+    }
+
+    .tag {
+        display: inline-block;
+        font-weight: 600;
+        border-radius: 30px;
+        padding: 0rem 0.9rem;
+        line-height: 0.1rem;
+        margin: 0.15rem;
+        font-size: 1rem;
+        cursor: pointer;
+
+        background-color: white;
+        color: grey;
+        box-shadow: inset 0 0 0 2px grey;
+    }
+
+    .tag.checked {
+        background-color: grey;
+        color: white;
+        box-shadow: none;
+
+    }
+
+}
+
+.search-bar {
+
+    input {
+        width: 20rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+
+        @include desktop {
+            width: 20rem;
+        }
+    }
+
+    //NYTT
+    @include desktop {
+        width: 30rem;
+    }
+}
+
+//FILTER CHALLENGES
+.filterBtn {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.filters__close {
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    font-size: 2rem;
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+    z-index: 999;
+}
+
