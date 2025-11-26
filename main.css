@@ -533,7 +533,7 @@
   border-radius: 50%;
   height: 60px;
   width: 60px;
-  z-index: 2;
+  z-index: 1;
   font-size: 30px;
 }
 .challenge__icon svg {
