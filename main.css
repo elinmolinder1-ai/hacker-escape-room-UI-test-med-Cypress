@@ -616,6 +616,16 @@
   font-weight: 400;
   margin-bottom: 1rem;
 }
+.filters__close {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  font-size: 2rem;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  z-index: 999;
+}
 
 .filter {
   margin-bottom: 2rem;
@@ -648,10 +658,9 @@
 }
 .rating__stars {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 0.25rem;
-  direction: rtl;
   cursor: pointer;
 }
 .rating .fa-star {
@@ -715,17 +724,6 @@
 .filterBtn {
   font-size: 1.1rem;
   margin-bottom: 3rem;
-}
-
-.filters__close {
-  position: absolute;
-  top: 0.1rem;
-  right: 0.1rem;
-  font-size: 2rem;
-  border: 0;
-  background-color: white;
-  cursor: pointer;
-  z-index: 999;
 }
 
 html, body {
