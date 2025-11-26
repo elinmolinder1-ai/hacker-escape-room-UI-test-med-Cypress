@@ -105,7 +105,7 @@ async function initMain() {
         top3.forEach(ch => listElMain.appendChild(createChallengeLi(ch)));
         statusElMain.textContent = '';
     } catch (e) {
-        statusElMain.textContent = 'Kunde inte ladda data.';
+        statusElMain.textContent = 'Could not load data.';
         console.error(e);
     }
 }
@@ -117,7 +117,7 @@ const statusElAll = document.querySelector('#all-status');
 
 async function initAll() {
     try {
-        statusElAll.textContent = 'Laddar alla utmaningar...';
+        statusElAll.textContent = 'Loading challenges...';
 
         const all = await getChallenges();
         const sorted = [...all].sort(
@@ -131,7 +131,7 @@ async function initAll() {
 
         statusElAll.textContent = '';
     } catch (e) {
-        statusElAll.textContent = 'Kunde inte ladda data: ' + e.message;
+        statusElAll.textContent = 'Could not load data: ' + e.message;
         console.error(e);
     }
 }
