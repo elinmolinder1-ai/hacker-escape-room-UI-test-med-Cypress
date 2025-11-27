@@ -14,10 +14,27 @@ closemenu.addEventListener("click", () => {
 
 //Funktion to download api, is provided in task 4 Specifikation ==> API: https://lernia-sjj-assignments.vercel.app/
 export async function getChallenges() {
-    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-    const data = await res.json();
-    return data.challenges;
+    try {
+        const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        return data.challenges;
+
+    } catch (err) {
+        console.error("Failed to fetch challenges:", err);
+
+        const statusElAll = document.querySelector('#all-status');
+        if (statusElAll) {
+            statusElAll.textContent = 'Faild to fetch challenges, try again later!';
+        }
+
+        return [];
+    }
 };
+
 
 
 //function to create list challenges
@@ -147,7 +164,7 @@ if (listElAll && statusElAll) {
 async function loadFilterChallenges() {
     try {
         const res = await fetch('/filter.html');
-        if (!res.ok) throw new Error('Faild to load filter.html');
+        if (!res.ok) throw new Error('Failed to load filter.html');
 
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -188,7 +205,7 @@ async function loadFilterChallenges() {
     } catch (err) {
         console.error('loadFilterChallenges error', err);
         const statusElAll = document.querySelector('#all-status');
-    if (statusElAll) statusElAll.textContent = 'I am sorry, could not load the filter : ' + err.message;
+    if (statusElAll) statusElAll.textContent = ' I am sorry, could not load the filter : ' + err.message;
     }
 }
 
