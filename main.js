@@ -229,9 +229,11 @@ async function loadBookingModal(challenge) {
         document.querySelector('#booking-modal')?.remove();
 
         if (overlay) document.body.appendChild(overlay);
-        document.body.appendChild(modal); // Add modal to body
+        if (modal) document.body.appendChild(modal); // lägg till i all.html
         overlay?.classList.add('is-visible');
-        modal.classList.add('is-visible');
+        modal?.classList.add('is-visible');
+        initialiseBookingModal(challenge);
+        
     } catch (err) {
         console.error(loadBookingModal, err);
         const statusElAll = document.querySelector('#all-status');
