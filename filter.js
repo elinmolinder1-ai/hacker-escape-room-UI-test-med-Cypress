@@ -189,7 +189,7 @@ ratingStarsMax.forEach((star, index) => {
             filtered = filtered.filter(challenge => {
                 if (!challenge.labels) return false;
 
-                return filterState.tags.some(tag => //Updated to find challange with any one tag selected
+                return filterState.tags.every(tag => //Updated again, all tags need to exist in each challenge
                     challenge.labels.includes(tag)
                 );
             });
