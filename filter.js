@@ -1,5 +1,15 @@
 import { getChallenges, createChallengeLi } from './main.js';
 
+//moved to outside of initializeFilters to work with updateUIWithState
+let filterState = {
+        search: "",
+        online: false,
+        onSite: false,
+        tags: [],
+        minRating: 0, //lowest possible rating/unrated
+        maxRating: 5 //highest possible rating
+    };
+
 function initializeFilters() {
 
     const onlineCheckbox = document.querySelector(".filter__online");
@@ -70,44 +80,28 @@ getChallenges().then(data => {
 
     
 
-    ratingStarsMin.forEach((star, index) => {
-        star.addEventListener("click", () => {
-            const selected = ratingStarsMin.length - index;
-            filterState.minRating = selected;
-
-            ratingStarsMin.forEach((s, i) => {
-                if (i >= ratingStarsMin.length - selected) {
-                    s.classList.add("checked");
-                }
-                else {
-                    s.classList.remove("checked");
-                }
-            })
-            applyFilters();
-        });
+        updateUIWithState();
+        applyFilters();
     });
 
-    ratingStarsMax.forEach((star, index) => {
-        star.addEventListener("click", () => {
-            const selected = ratingStarsMax.length - index;
-            filterState.maxRating = selected;
-
-            ratingStarsMax.forEach((s, i) => {
-                if (i >= ratingStarsMax.length - selected) {
-                    s.classList.add("checked");
-                }
-                else {
-                    s.classList.remove("checked");
-                }
-            })
-
-            applyFilters();
-        });
+//event listeners for each filter type
+ ratingStarsMin.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        filterState.minRating = ratingStarsMin.length - index;
+        applyFilters();
     });
+});
+
+ratingStarsMax.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        filterState.maxRating = ratingStarsMax.length - index;
+        applyFilters();
+    });
+});
 
     onsiteCheckbox.addEventListener("change", () => {
         filterState.onSite = onsiteCheckbox.checked;
-        applyFilters();
+        applyFilters(); 
     });
 
     onlineCheckbox.addEventListener("change", () => {
@@ -119,7 +113,6 @@ getChallenges().then(data => {
     filterUserInput.addEventListener("input", (e) => {
         filterState.search = e.target.value.toLowerCase();
         applyFilters();
-    })
 
 
     function renderFilteredChallenges(challenges) {
@@ -136,11 +129,41 @@ getChallenges().then(data => {
             return;
         }
 
+    //ch = each challenge from main.js
         challenges.forEach(ch => {
             list.appendChild(createChallengeLi(ch));
         });
     };
 
+    //update filter UI with filter state
+    function updateUIWithState() {
+    
+    onlineCheckbox.checked = filterState.online;
+    onsiteCheckbox.checked = filterState.onSite;
+
+     ratingStarsMin.forEach((star, index) => {
+        const selected = filterState.minRating;
+        const threshold = ratingStarsMin.length - selected;
+        star.classList.toggle("checked", index >= threshold); 
+    });
+
+   
+    ratingStarsMax.forEach((star, index) => {
+        const selected = filterState.maxRating;
+        const threshold = ratingStarsMax.length - selected;
+        star.classList.toggle("checked", index >= threshold);
+    });
+
+    tagElement.forEach(tag => {
+        const value = tag.textContent.trim().toLowerCase();
+        tag.classList.toggle("checked", filterState.tags.includes(value));
+    });
+
+    filterUserInput.value = filterState.search;
+   
+}
+
+//apply filters to challenges
     function applyFilters() {
         let filtered = allChallengesData;
 
@@ -183,14 +206,16 @@ getChallenges().then(data => {
             });
         }
 
+        //renders filtered challenges and updates UI
         renderFilteredChallenges(filtered);
+        updateUIWithState();
 
         console.log('Search-filter:', filterState.search)
         console.log(filterState);
     }
 
 };
-
+    
 //Gör initializeFilters tillgänglig globalt så att main.js kommer åt denna
 window.initializeFilters = initializeFilters;
 
