@@ -114,7 +114,7 @@ ratingStarsMax.forEach((star, index) => {
         list.innerHTML = "";
 
         if(challenges.length===0){
-            list.innerHTML='<p class="no-results">Your search did not match any challenges</p>';
+            list.innerHTML='<p class="no-results">No matching challenges</p>';
             return;
         }
 
