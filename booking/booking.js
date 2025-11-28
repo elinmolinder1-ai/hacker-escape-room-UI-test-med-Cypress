@@ -1,61 +1,69 @@
-/* Requirements from eventlistener on bookroom button
-
-1. get selected challenge as object
-2. add class on modal section booking-step-1 to booking-step-active
-
-*/
-
-//import {challenge_selected} from './main.js';
-
-//remove when connecting actual challenge object
-const challenge_selected = {id:1, 
-            type:"onsite", 
-            title: "Project: X of Doom",
-            description: "Try your hardest and succeed. Or fail",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 1,
-            image: "https://placekitten.com/640/480",
-            labels: ['linux, web, javascript']
-        };
-//declare array to store times available
+// declare variables
+let date_booking;
+let name_booking;
+let email_booking;
+let time_booking;
+let participants_booking;
+let challenge_title1;
+let challenge_title2;
+let step_1;
+let step_2;
+let step_3;
+let searchslots_button;
+let makebooking_button;
+let challenge_selected;
 let slots = [];
 
-//declare variables to be used with DOM API
-const date_booking =document.querySelector('#booking-date-input');
-const name_booking = document.querySelector('#booking-name-input');
-const email_booking = document.querySelector('#booking-email-input');
-const time_booking = document.querySelector('#booking-time-select');
-const participants_booking = document.querySelector('#booking-participants-select');
-const challenge_title1 = document.querySelector('#booking-room-title-step1');
-const challenge_title2 = document.querySelector('#booking-room-title-step2');
-const step_1 = document.querySelector('#booking-step-1');
-const step_2 = document.querySelector('#booking-step-2');
-const step_3 = document.querySelector('#booking-step-3');
-const searchslots_button = document.querySelector('#booking-step1-next');
-const makebooking_button = document.querySelector('#booking-step2-next');
+//Initialise everything
+//take in selected challenge details
+// assign DOM elements and event listeners
+//back to challenges
+function initialiseBookingModal(ch) {
+    challenge_selected = ch; 
+    final_booking_object = {};
+    date_booking = document.querySelector('#booking-date-input');
+    name_booking = document.querySelector('#booking-name-input');
+    email_booking = document.querySelector('#booking-email-input');
+    time_booking = document.querySelector('#booking-time-select');
+    participants_booking = document.querySelector('#booking-participants-select');
+    challenge_title1 = document.querySelector('#booking-room-title-step1');
+    challenge_title2 = document.querySelector('#booking-room-title-step2');
+    step_1 = document.querySelector('#booking-step-1');
+    step_2 = document.querySelector('#booking-step-2');
+    step_3 = document.querySelector('#booking-step-3');
+    searchslots_button = document.querySelector('#booking-step1-next');
+    makebooking_button = document.querySelector('#booking-step2-next');
+    backtoChallenges_button = document.querySelector("#booking-close");
 
-const final_booking_object = {};
+    if (challenge_title1) challenge_title1.textContent = challenge_selected.title;
+    if (challenge_title2) challenge_title2.textContent = challenge_selected.title;
+    if (searchslots_button) searchslots_button.addEventListener('click', create_fetch_url);
+    if (makebooking_button) makebooking_button.addEventListener('click', capturebookinginfo);
+    
+    if (backtoChallenges_button) {
+        backtoChallenges_button.addEventListener('click', () => {
+            window.location.href = "all.html";
+        });
+    }
+};
 
-challenge_title1.textContent = challenge_selected.title;
-challenge_title2.textContent = challenge_selected.title;
-
-//validate input and create url to fetch available slots based on challenge id and date chosen - DOM interaction. 
-//Also calls fetch function
-//active on button click
+//validate input and create url to fetch available slots
+//calls fetch function
+//call modal form step change function
 function create_fetch_url () {
     if (!date_booking.value) {
-        alert("the fuck");
+        alert("please enter correct date");
     }
     else {
         const date_url = date_booking.value;
         const res_url = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${date_url}&challenge=${challenge_selected.id}`;
-    console.log(res_url); //for testing
-    fetch_slots(res_url)
+        console.log(res_url); //for testing
+        fetch_slots(res_url)
         .then((Response) => {
         change_modal_step();});
 }}
 
+//navigate through modal functions
 function change_modal_step() {
     const active_modal_stage = document.querySelector('.booking-step-active').id;
     console.log(active_modal_stage);
@@ -72,14 +80,22 @@ function change_modal_step() {
     }
 }
 
-//function to fetch available slots
+//function to fetch available slots using API
 async function fetch_slots(url) {
-    const res = await fetch(url);
-    const data = await res.json();
-    slots = data.slots;
-    populateslots();
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("API error");
+        const data = await res.json();
+        slots = data.slots;
+        populateslots();
+    } catch (error) {
+        console.error("Error fetching slots:", error);
+        alert("Failed to load available slots. Please try again.");
+    }
 }
 
+
+//function to show slots fetched from API to input box
 function populateslots() {
     slots.forEach(slot => {
     const slotoption = document.createElement('option');
@@ -96,18 +112,19 @@ function populateslots() {
     }
 }
 
+//function to validate input and create object to send to backend for reservation
 function capturebookinginfo () {
    
     if (!name_booking.value) {
-        alert("name");
+        alert("please enter name");
     }
     else {
         if (!email_booking.value) {
-            alert("emaail");
+            alert("please enter valid email");
         }
         else {
             if (!time_booking.value) {
-                alert("slot");
+                alert("choose a slot please");
             }
             else { 
                 final_booking_object.challenge = challenge_selected.id;
@@ -124,25 +141,23 @@ function capturebookinginfo () {
             }
             }}
 
+//POST inputted object to backend
+//Reservation success or failure
 async function post_booking () {
-    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(final_booking_object),
-});
-const data = await res.json();
-console.log(data);
+    try {
+        const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(final_booking_object),
+        });
+        if (!res.ok) throw new Error("Reservation failed! Status: " + res.status);
+        const data = await res.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error("Error booking reservation:", error);
+        alert("Booking failed. Please try again.");
+    }
 }
-
-searchslots_button.addEventListener('click', create_fetch_url);
-makebooking_button.addEventListener('click', capturebookinginfo);
-
-//Back to all.html
-const backtoChallenges_button = document.querySelector("#booking-close");
-backtoChallenges_button.addEventListener('click', () => {
-
-window.location.href = "/all.html";
-});
-

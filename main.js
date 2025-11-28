@@ -14,13 +14,30 @@ closemenu.addEventListener("click", () => {
 
 //Funktion to download api, is provided in task 4 Specifikation ==> API: https://lernia-sjj-assignments.vercel.app/
 export async function getChallenges() {
-    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-    const data = await res.json();
-    return data.challenges;
+    try {
+        const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        return data.challenges;
+
+    } catch (err) {
+        console.error("Failed to fetch challenges:", err);
+
+        const statusElAll = document.querySelector('#all-status');
+        if (statusElAll) {
+            statusElAll.textContent = 'Faild to fetch challenges, try again later!';
+        }
+
+        return [];
+    }
 };
 
 
-//unktion to create list challenges
+
+//function to create list challenges
 export function createChallengeLi(ch) {
     const {
         title,
@@ -91,9 +108,8 @@ export function createChallengeLi(ch) {
     return li;
 }
 
-
-const listElMain = document.getElementById('main-list');
-const statusElMain = document.getElementById('main-status');
+const listElMain = document.querySelector('#main-list');
+const statusElMain = document.querySelector('#main-status');
 
 //Function to get all challenges and show the three best rated on main site. 
 async function initMain() {
@@ -106,18 +122,19 @@ async function initMain() {
         top3.forEach(ch => listElMain.appendChild(createChallengeLi(ch)));
         statusElMain.textContent = '';
     } catch (e) {
-        statusElMain.textContent = 'Kunde inte ladda data.';
+        statusElMain.textContent = 'Could not load data.';
         console.error(e);
     }
 }
 
 //Function to get all challenges and show the 15 best rated on all-challenges. 
-const listElAll = document.getElementById('all-list');
-const statusElAll = document.getElementById('all-status');
+
+const listElAll = document.querySelector('#all-list');
+const statusElAll = document.querySelector('#all-status');
 
 async function initAll() {
     try {
-        statusElAll.textContent = 'Laddar alla utmaningar...';
+        statusElAll.textContent = 'Loading challenges...';
 
         const all = await getChallenges();
         const sorted = [...all].sort(
@@ -131,7 +148,7 @@ async function initAll() {
 
         statusElAll.textContent = '';
     } catch (e) {
-        statusElAll.textContent = 'Kunde inte ladda data: ' + e.message;
+        statusElAll.textContent = 'Could not load data: ' + e.message;
         console.error(e);
     }
 }
@@ -147,7 +164,7 @@ if (listElAll && statusElAll) {
 async function loadFilterChallenges() {
     try {
         const res = await fetch('/filter.html');
-        if (!res.ok) throw new Error('Faild to load filter.html');
+        if (!res.ok) throw new Error('Failed to load filter.html');
 
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -188,7 +205,7 @@ async function loadFilterChallenges() {
     } catch (err) {
         console.error('loadFilterChallenges error', err);
         const statusElAll = document.querySelector('#all-status');
-    if (statusElAll) statusElAll.textContent = 'I am sorry, could not load the filter : ' + err.message;
+    if (statusElAll) statusElAll.textContent = ' I am sorry, could not load the filter : ' + err.message;
     }
 }
 
@@ -198,7 +215,7 @@ window.loadFilterChallenges = loadFilterChallenges;
 //MODAL function to load the HTML from booking.html
 async function loadBookingModal(challenge) {
     try {
-        const res = await fetch('/booking/booking.html');
+        const res = await fetch('booking/booking.html');
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
 
@@ -212,12 +229,14 @@ async function loadBookingModal(challenge) {
         document.querySelector('#booking-modal')?.remove();
 
         if (overlay) document.body.appendChild(overlay);
-        document.body.appendChild(modal); // Add modal to body
+        if (modal) document.body.appendChild(modal); // lägg till i all.html
         overlay?.classList.add('is-visible');
-        modal.classList.add('is-visible');
+        modal?.classList.add('is-visible');
+        initialiseBookingModal(challenge);
+        
     } catch (err) {
         console.error(loadBookingModal, err);
-        const statusElAll = document.querySelector('all-status');
+        const statusElAll = document.querySelector('#all-status');
         alert('Could not open booking modal, try again later!');
 }
 }
