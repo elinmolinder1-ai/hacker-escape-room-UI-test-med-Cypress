@@ -4,6 +4,8 @@ let name_booking;
 let email_booking;
 let time_booking;
 let participants_booking;
+let participants_booking_label;
+let participants_booking_error;
 let challenge_title1;
 let challenge_title2;
 let step_1;
@@ -25,8 +27,11 @@ function initialiseBookingModal(ch) {
     name_booking = document.querySelector('#booking-name-input');
     email_booking = document.querySelector('#booking-email-input');
     time_booking = document.querySelector('#booking-time-select');
-    participants_booking = document.querySelector('#booking-participants-select');
-    challenge_title1 = document.querySelector('#booking-room-title-step1');
+    //participants_booking = document.querySelector('#booking-participants-select')
+    participants_booking = document.querySelector('#booking-input-participants');
+    participants_booking_label = document.querySelector('#booking-label-participants');
+    participants_booking_error = document.querySelector('#booking-error-participants');
+    booking_input_participantschallenge_title1 = document.querySelector('#booking-room-title-step1'); //changed name from booking-input-participantschallenge_title1
     challenge_title2 = document.querySelector('#booking-room-title-step2');
     step_1 = document.querySelector('#booking-step-1');
     step_2 = document.querySelector('#booking-step-2');
@@ -34,6 +39,7 @@ function initialiseBookingModal(ch) {
     searchslots_button = document.querySelector('#booking-step1-next');
     makebooking_button = document.querySelector('#booking-step2-next');
     backtoChallenges_button = document.querySelector("#booking-close");
+
 
     if (challenge_title1) challenge_title1.textContent = challenge_selected.title;
     if (challenge_title2) challenge_title2.textContent = challenge_selected.title;
@@ -103,13 +109,16 @@ function populateslots() {
     slotoption.textContent = slot;
     time_booking.appendChild(slotoption);
     });
+    
+    /*
     let i=0;
     for (i=challenge_selected.minParticipants;i<=challenge_selected.maxParticipants;i++) {
         const partoption = document.createElement('option');
         partoption.textContent = i+" participants";
         partoption.value = i;
         participants_booking.appendChild(partoption);
-    }
+    }*/
+
 }
 
 //function to validate input and create object to send to backend for reservation
