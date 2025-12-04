@@ -163,7 +163,7 @@ if (listElAll && statusElAll) {
 //FILTER function to load in the HTML from filter.html
 async function loadFilterChallenges() {
     try {
-        const res = await fetch('/filter.html');
+        const res = await fetch('filter.html');
         if (!res.ok) throw new Error('Failed to load filter.html');
 
         const html = await res.text();

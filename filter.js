@@ -114,7 +114,7 @@ ratingStarsMax.forEach((star, index) => {
         list.innerHTML = "";
 
         if(challenges.length===0){
-            list.innerHTML='<p class="no-results">Your search did not match any challenges</p>';
+            list.innerHTML='<p class="no-results">No matching challenges</p>';
             return;
         }
 
@@ -189,7 +189,7 @@ ratingStarsMax.forEach((star, index) => {
             filtered = filtered.filter(challenge => {
                 if (!challenge.labels) return false;
 
-                return filterState.tags.some(tag => //Updated to find challange with any one tag selected
+                return filterState.tags.every(tag => //Updated again, all tags need to exist in each challenge
                     challenge.labels.includes(tag)
                 );
             });
