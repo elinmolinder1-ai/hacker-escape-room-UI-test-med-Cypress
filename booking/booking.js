@@ -52,8 +52,10 @@ function initialiseBookingModal(ch) {
         });
     }
     if (participants_booking) {
+        participants_booking.addEventListener('focus', () => {
         participants_booking.addEventListener('input', validateparticipantinput);
-};
+    });
+}
 }
 
 //validate input and create url to fetch available slots
@@ -116,7 +118,6 @@ function populateslots() {
     participants_booking.placeholder = ` ${challenge_selected.minParticipants} - ${challenge_selected.maxParticipants} participants`
     participants_booking.min = challenge_selected.minParticipants;
     participants_booking.max = challenge_selected.maxParticipants;
-    validateparticipantinput();
     /*
     let i=0;
     for (i=challenge_selected.minParticipants;i<=challenge_selected.maxParticipants;i++) {
