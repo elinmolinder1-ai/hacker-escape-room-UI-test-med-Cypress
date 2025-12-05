@@ -1,0 +1,87 @@
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes navfadeandscale {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.aboutUs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+@media screen and (min-width: 700px) {
+  .aboutUs {
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 5rem 10rem;
+    gap: 2rem;
+  }
+}
+.aboutUs__image {
+  height: auto;
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+  .aboutUs__image {
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 5rem 10rem;
+    gap: 7.5rem;
+  }
+}
+@media screen and (min-width: 700px) and (min-width: 700px) {
+  .aboutUs__image {
+    width: 50%;
+  }
+}
+.aboutUs__text {
+  padding: 5rem 3rem;
+}
+@media screen and (min-width: 700px) {
+  .aboutUs__text {
+    width: 50%;
+    text-align: left;
+  }
+}
+.aboutUs__h1 {
+  font-size: 2rem;
+}
+.aboutUs__p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.findUs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #011827;
+  text-align: center;
+  color: white;
+}
+.findUs__text {
+  padding: 4rem 3.5rem;
+}
+.findUs__h2 {
+  font-size: 2rem;
+}
+@media screen and (min-width: 700px) {
+  .findUs__h2 {
+    text-align: center;
+  }
+}/*# sourceMappingURL=aboutUs.css.map */

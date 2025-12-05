@@ -1,0 +1,88 @@
+@use '../lib/variables_mixins.scss' as *;
+
+.aboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    @include desktop {
+        flex-direction: row-reverse;
+        text-align: left;
+        padding: 5rem 10rem;
+        gap: 2rem;
+
+    }
+
+
+&__image {
+        height: auto;
+        width: 100%;
+        @include desktop {
+        flex-direction: row-reverse;
+        text-align: left;
+        padding: 5rem 10rem;
+        gap: 7.5rem;
+
+         @include desktop {
+        width: 50%;
+
+    }
+
+    }
+    }
+
+&__text {
+    padding: 5rem 3rem;
+
+    @include desktop {
+        width: 50%;
+        text-align: left;
+
+    }
+}
+
+
+&__h1 {
+    font-size: 2rem;
+    }
+
+&__p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    }
+
+}
+
+.findUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #011827; //change to $esc-textdark
+    text-align: center;
+    color: white;
+
+   
+
+    &__text {
+        padding: 4rem 3.5rem;
+        
+        
+    }
+
+    &__h2 {
+          @include desktop {
+        text-align: center;
+
+    }
+        font-size: 2rem;
+        
+    }
+
+
+
+
+}
+
