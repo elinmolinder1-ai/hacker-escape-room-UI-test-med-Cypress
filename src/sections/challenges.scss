@@ -1,5 +1,19 @@
 @use '../lib/variables_mixins.scss' as *;
 
+.loading {
+
+  border: 16px solid $esc-beige; 
+  border-top: 16px solid $esc-darkblue; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.hidden { display: none; }
+
+
+
 .challenges {
   display: flex;
   flex-direction: column;
