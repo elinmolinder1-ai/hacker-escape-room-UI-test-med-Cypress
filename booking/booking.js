@@ -35,6 +35,7 @@ function initialiseBookingModal(ch) {
     searchslots_button = document.querySelector('#booking-step1-next');
     makebooking_button = document.querySelector('#booking-step2-next');
     backtoChallenges_button = document.querySelector("#booking-close");
+    closeBooking_button = document.querySelector("#booking-close-btn");
 
     if (challenge_title1) challenge_title1.textContent = challenge_selected.title;
     if (challenge_title2) challenge_title2.textContent = challenge_selected.title;
@@ -43,6 +44,12 @@ function initialiseBookingModal(ch) {
 
     if (backtoChallenges_button) {
         backtoChallenges_button.addEventListener('click', () => {
+            window.location.href = "all.html";
+        });
+    }
+    //Closing button in booking modal
+    if (closeBooking_button) {
+        closeBooking_button.addEventListener('click', () => {
             window.location.href = "all.html";
         });
     }
