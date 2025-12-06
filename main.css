@@ -605,8 +605,21 @@
 .filters {
   display: none;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
   position: relative;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 15px;
+  background-color: rgb(251, 248, 248);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.filters__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0.8rem;
 }
 @media screen and (min-width: 700px) {
   .filters {
@@ -624,15 +637,18 @@
 .filters__title {
   font-size: 1.4rem;
   font-weight: 400;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: -0.9rem;
+  margin-left: -0.9rem;
 }
 .filters__close {
   position: absolute;
   top: 0.1rem;
-  right: 0.1rem;
-  font-size: 2rem;
+  right: 0.2rem;
+  font-size: 1.6rem;
+  padding: 0.3rem;
   border: 0;
-  background-color: white;
+  background-color: rgb(251, 248, 248);
   cursor: pointer;
   z-index: 999;
 }
@@ -648,6 +664,7 @@
 }
 .filter__title {
   font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .type__option {
@@ -664,7 +681,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.1rem;
 }
 .rating__stars {
   display: flex;
@@ -703,6 +720,7 @@
   margin: 0.15rem;
   font-size: 1rem;
   cursor: pointer;
+  margin-bottom: 1.2rem;
   background-color: white;
   color: grey;
   box-shadow: inset 0 0 0 2px grey;
@@ -715,10 +733,11 @@
 
 .search-bar input {
   width: 20rem;
-  padding: 0.5rem;
+  padding: 1.2rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
+  margin-top: 1.2rem;
 }
 @media screen and (min-width: 700px) {
   .search-bar input {
@@ -733,7 +752,7 @@
 
 .filterBtn {
   font-size: 1.1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 html, body {
