@@ -53,7 +53,7 @@ function initialiseBookingModal(ch) {
     }
     if (participants_booking) {
         participants_booking.addEventListener('focus', () => {
-        participants_booking.addEventListener('input', validateparticipantinput);
+        participants_booking.addEventListener('input', validate_participant_input);
     });
 }
 }
@@ -98,7 +98,7 @@ async function fetch_slots(url) {
         if (!res.ok) throw new Error("API error");
         const data = await res.json();
         slots = data.slots;
-        populateslots();
+        populate_slots();
     } catch (error) {
         console.error("Error fetching slots:", error);
         alert("Failed to load available slots. Please try again.");
@@ -107,7 +107,7 @@ async function fetch_slots(url) {
 
 
 //function to show slots fetched from API to input box
-function populateslots() {
+function populate_slots() {
     slots.forEach(slot => {
     const slotoption = document.createElement('option');
     slotoption.value = slot;
@@ -129,7 +129,7 @@ function populateslots() {
 
 }
 
-function validateparticipantinput() {
+function validate_participant_input() {
     const participant_value = participants_booking.value.trim();
     const participant_input = parseInt(participant_value, 10);
 
@@ -165,10 +165,11 @@ function capturebookinginfo () {
             if (!time_booking.value) {
                 alert("choose a slot please");
             }
+            else {
              // final participants validation
-            const participantsValid = validateparticipantinput();
+            const participantsValid = validate_participant_input();
             if (!participantsValid) {
-                alert("please enter valid number of participants");
+                
                 return;
         }
                 else { 
@@ -205,4 +206,4 @@ async function post_booking () {
         console.error("Error booking reservation:", error);
         alert("Booking failed. Please try again.");
     }
-}
+}}
