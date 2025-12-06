@@ -80,7 +80,19 @@ function create_fetch_url () {
         console.log(res_url); //for testing
         fetch_slots(res_url)
         .then((Response) => {
-        change_modal_step();});
+         const errorEl = document.querySelector('#booking-step1-error');
+
+            if (!slots || slots.length === 0) {
+                if (errorEl) {
+                    errorEl.textContent = 'No available times for this date. Please choose another date.';
+                }
+                return; // do NOT move to step 2
+            }
+        if (errorEl) {
+                errorEl.textContent = '';
+            }
+            change_modal_step();
+        });
 }}
 
 //navigate through modal functions
