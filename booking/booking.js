@@ -117,6 +117,9 @@ function change_modal_step() {
 
 //function to fetch available slots using API
 async function fetch_slots(url) {
+    const errorEl = document.querySelector('#booking-step1-error');
+    if (errorEl) {
+        errorEl.textContent = '';
     try {
         const res = await fetch(url);
         if (!res.ok) throw new Error("API error");
@@ -125,9 +128,10 @@ async function fetch_slots(url) {
         populateslots();
     } catch (error) {
         console.error("Error fetching slots:", error);
-        alert("Failed to load available slots. Please try again.");
+        errorEl.textContent = "Failed to load available slots. Please try again.";
+        return;
     }
-}
+}}
 
 
 //function to show slots fetched from API to input box
