@@ -47,17 +47,30 @@ function initialiseBookingModal(ch) {
     }
 };
 
+
+
 //validate input and create url to fetch available slots
 //calls fetch function
 //call modal form step change function
 function create_fetch_url () {
+    const selectedDate = new Date(date_booking.value);
+    const today = new Date();
+    // normalize to midnight for comparison
+    today.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
     const errorEl = document.querySelector('#booking-step1-error');
     if (errorEl) {
         errorEl.textContent = '';
     }
-    if (!date_booking.value) {
+    if (!date_booking.value) { //check if no date is entered
         if (errorEl) {
             errorEl.textContent = 'Please select a date.';
+        }
+        return;
+    }
+    if (selectedDate < today) {
+        if (errorEl) {
+            errorEl.textContent = 'Please choose a date in the future.';
         }
         return;
     }
