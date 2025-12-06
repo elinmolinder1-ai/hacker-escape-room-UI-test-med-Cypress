@@ -131,7 +131,7 @@ function populate_slots() {
 
 function validate_participant_input() {
     const participant_value = participants_booking.value.trim();
-    const participant_input = Number(participant_value);
+    const participant_input = Number(participant_value);//changed from parseINT to accomodate decimal checks
 
     participants_booking_error.textContent = "";
     participants_booking.classList.remove('booking-input-invalid');
