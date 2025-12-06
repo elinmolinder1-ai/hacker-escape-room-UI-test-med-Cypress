@@ -131,7 +131,7 @@ function populate_slots() {
 
 function validate_participant_input() {
     const participant_value = participants_booking.value.trim();
-    const participant_input = parseInt(participant_value, 10);
+    const participant_input = Number(participant_value);
 
     participants_booking_error.textContent = "";
     participants_booking.classList.remove('booking-input-invalid');
@@ -140,12 +140,20 @@ function validate_participant_input() {
         !participant_value ||
         isNaN(participant_input) ||
         participant_input < challenge_selected.minParticipants ||
-        participant_input > challenge_selected.maxParticipants
-    ) {
-        participants_booking_error.textContent =
-            `Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
+        participant_input > challenge_selected.maxParticipants   
+     ) {
+        if (!Number.isInteger(participant_value)) {
+            participants_booking_error.textContent =
+            `People cannot be fractions. Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
         participants_booking.classList.add('booking-input-invalid');
         return false;
+    }
+        else {
+            participants_booking_error.textContent =
+            `Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
+            participants_booking.classList.add('booking-input-invalid');
+            return false;
+        }
     }
 
     return true;
