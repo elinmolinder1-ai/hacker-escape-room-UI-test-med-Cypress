@@ -804,12 +804,39 @@
   align-items: center;
   text-align: center;
 }
+@media screen and (min-width: 700px) {
+  .aboutUs {
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 5rem 10rem;
+    gap: 2rem;
+  }
+}
 .aboutUs__image {
   height: auto;
   width: 100%;
 }
+@media screen and (min-width: 700px) {
+  .aboutUs__image {
+    flex-direction: row-reverse;
+    text-align: left;
+    padding: 5rem 10rem;
+    gap: 7.5rem;
+  }
+}
+@media screen and (min-width: 700px) and (min-width: 700px) {
+  .aboutUs__image {
+    padding: 1vw 1vw;
+  }
+}
 .aboutUs__text {
   padding: 5rem 3rem;
+}
+@media screen and (min-width: 700px) {
+  .aboutUs__text {
+    width: 50%;
+    text-align: left;
+  }
 }
 .aboutUs__h1 {
   font-size: 2rem;
@@ -833,6 +860,11 @@
 }
 .findUs__h2 {
   font-size: 2rem;
+}
+@media screen and (min-width: 700px) {
+  .findUs__h2 {
+    text-align: center;
+  }
 }
 
 html, body {

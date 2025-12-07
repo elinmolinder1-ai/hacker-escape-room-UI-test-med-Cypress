@@ -45,7 +45,7 @@
 }
 @media screen and (min-width: 700px) and (min-width: 700px) {
   .aboutUs__image {
-    width: 50%;
+    padding: 1vw 1vw;
   }
 }
 .aboutUs__text {
