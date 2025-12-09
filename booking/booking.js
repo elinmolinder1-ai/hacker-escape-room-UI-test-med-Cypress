@@ -209,31 +209,57 @@ function validate_participant_input() {
 
 //function to validate input and create object to send to backend for reservation
 function validate_booking_input() {
+name_booking_error = "";
+phone_booking_error = "";
+email_booking_error = "";
+time_booking_error = "";
+
+name_booking.classList.remove('booking-input-invalid');
+phone_booking.classList.remove('booking-input-invalid');
+email_booking.classList.remove('booking-input-invalid');
+time_booking.classList.remove('booking-input-invalid');
+
+let valid = true;
 
     if (!name_booking.value) {
-        alert("please enter name");
+    name_booking_error.textContent = "Please enter your name.";
+    name_booking.classList.add('booking-input-invalid');
+    valid = false;
+       
     }
     else {
         if (!phone_booking.value) {
-            alert("please enter valid phone number");
+         name_booking_error.textContent = "Please enter your name.";
+          name_booking.classList.add('booking-input-invalid');
+           valid = false;
+          
         }
         else {
             if (!email_booking.value) {
-                alert("please enter valid email");
+                email_booking_error.textContent = "Please enter your email.";
+                email_booking.classList.add('booking-input-invalid');
+                valid = false;
+               
             }
             else {
                 if (!time_booking.value) {
-                    alert("choose a slot please");
+                    time_booking_error.textContent = "Please select a time.";
+                    time_booking.classList.add('booking-input-invalid');
+                    valid = false;
+                  
                 }
                 else {
                     // final participants validation
                     const participantsValid = validate_participant_input();
-                    if (!participantsValid) {
+                    if (!participantsValid) valid = false;
 
-                        return;
+                    if (!valid) {
+
+                        return false
                     }
                     else {
                         capture_booking_info();
+                        return true;
                     }
                 }
             }
