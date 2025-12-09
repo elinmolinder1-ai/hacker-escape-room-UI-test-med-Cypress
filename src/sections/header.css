@@ -17,7 +17,7 @@
   }
 }
 .header {
-  background-color: #011827;
+  background-color: #021928;
 }
 @media screen and (min-width: 700px) {
   .header {
@@ -25,7 +25,6 @@
   }
 }
 .header__main {
-  padding-left: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
@@ -83,7 +82,7 @@
   }
 }
 .header__mainmobilenavmenu {
-  background-color: #011827;
+  background-color: #021928;
   color: #fff;
   font-size: 3rem;
   padding-left: 50px;
@@ -101,7 +100,7 @@
   display: none;
 }
 .header__navcontainernav {
-  background-color: #011827;
+  background-color: #021928;
   position: fixed;
   top: 1rem;
   right: 1rem;
@@ -157,7 +156,7 @@
   top: 1rem;
   right: 1rem;
   font-size: 2rem;
-  background-color: #011827;
+  background-color: #021928;
   border: 0;
   color: #fff;
 }
