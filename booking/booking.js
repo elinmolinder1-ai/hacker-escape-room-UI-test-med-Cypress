@@ -232,21 +232,22 @@ time_booking.classList.remove('booking-input-invalid');
 name_booking.addEventListener('input', () => {
     name_booking.classList.remove('booking-input-invalid');
     name_booking_error.textContent = "";
-});         
+}); 
+
 phone_booking.addEventListener('input', () => {
     phone_booking.classList.remove('booking-input-invalid');
     phone_booking_error.textContent = "";
-});
+} );
 
 email_booking.addEventListener('input', () => {
     email_booking.classList.remove('booking-input-invalid');
     email_booking_error.textContent = "";
 } );
 
-time_booking.addEventListener('input', () => {
+time_booking.addEventListener('change', () => {
     time_booking.classList.remove('booking-input-invalid');
     time_booking_error.textContent = "";
-});
+} );
 
 let valid = true;
 //alerts replaces with text content error messages
@@ -258,8 +259,8 @@ let valid = true;
     }
     else {
         if (!phone_booking.value.trim()) {
-         phone_booking_error.textContent = "Please enter your name.";
-          phone_booking_.classList.add('booking-input-invalid');
+         phone_booking_error.textContent = "Please enter your phone number.";
+          phone_booking.classList.add('booking-input-invalid');
            valid = false;
           
         }
