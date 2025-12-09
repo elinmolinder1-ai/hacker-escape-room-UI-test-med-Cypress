@@ -40,23 +40,31 @@ function initialiseBookingModal(ch) {
     searchslots_button = document.querySelector('#booking-step1-next');
     makebooking_button = document.querySelector('#booking-step2-next');
     backtoChallenges_button = document.querySelector("#booking-close");
+    closeBooking_button = document.querySelector("#booking-close-btn");
 
 
     if (challenge_title1) challenge_title1.textContent = challenge_selected.title;
     if (challenge_title2) challenge_title2.textContent = challenge_selected.title;
     if (searchslots_button) searchslots_button.addEventListener('click', create_fetch_url);
     if (makebooking_button) makebooking_button.addEventListener('click', validate_booking_input);
-    
+
     if (backtoChallenges_button) {
         backtoChallenges_button.addEventListener('click', () => {
             window.location.href = "all.html";
         });
     }
+    //Closing button in booking modal
+    if (closeBooking_button) {
+        closeBooking_button.addEventListener('click', () => {
+            window.location.href = "all.html";
+        });
+    }
+
     if (participants_booking) {
         participants_booking.addEventListener('focus', () => {
-        participants_booking.addEventListener('input', validate_participant_input);
-    });
-}
+            participants_booking.addEventListener('input', validate_participant_input);
+        });
+    }
 }
 
 //validate input and create url to fetch available slots
@@ -143,17 +151,17 @@ function validate_participant_input() {
         !participant_value ||
         isNaN(participant_input) ||
         participant_input < challenge_selected.minParticipants ||
-        participant_input > challenge_selected.maxParticipants   
-     ) {
+        participant_input > challenge_selected.maxParticipants
+    ) {
         if (!Number.isInteger(participant_value)) {
             participants_booking_error.textContent =
-            `People cannot be fractions. Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
-        participants_booking.classList.add('booking-input-invalid');
-        return false;
-    }
+                `People cannot be fractions. Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
+            participants_booking.classList.add('booking-input-invalid');
+            return false;
+        }
         else {
             participants_booking_error.textContent =
-            `Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
+                `Please enter between ${challenge_selected.minParticipants} and ${challenge_selected.maxParticipants} participants`;
             participants_booking.classList.add('booking-input-invalid');
             return false;
         }
@@ -163,8 +171,8 @@ function validate_participant_input() {
 }
 
 //function to validate input and create object to send to backend for reservation
-function validate_booking_input () {
-   
+function validate_booking_input() {
+
     if (!name_booking.value) {
         alert("please enter name");
     }
@@ -181,31 +189,35 @@ function validate_booking_input () {
                     alert("choose a slot please");
                 }
                 else {
-        // final participants validation
-            const participantsValid = validate_participant_input();
-            if (!participantsValid) {
-                
-                return;
-        }
-                else { 
-                    capture_booking_info();
-                }}}}}
+                    // final participants validation
+                    const participantsValid = validate_participant_input();
+                    if (!participantsValid) {
 
-function capture_booking_info() {
-                    final_booking_object.challenge = challenge_selected.id;
-                    final_booking_object.name = name_booking.value;
-                    final_booking_object.email = email_booking.value;
-                    final_booking_object.date = date_booking.value;
-                    final_booking_object.time = time_booking.value;
-                    final_booking_object.participants = Number(participants_booking.value);
-                    console.log(final_booking_object);//testing
-                    post_booking()
-                        .then((Response) => {
-                            change_modal_step();
-                        });
+                        return;
+                    }
+                    else {
+                        capture_booking_info();
+                    }
                 }
+            }
+        }
+    }
 
-                
+    function capture_booking_info() {
+        final_booking_object.challenge = challenge_selected.id;
+        final_booking_object.name = name_booking.value;
+        final_booking_object.email = email_booking.value;
+        final_booking_object.date = date_booking.value;
+        final_booking_object.time = time_booking.value;
+        final_booking_object.participants = Number(participants_booking.value);
+        console.log(final_booking_object);//testing
+        post_booking()
+            .then((Response) => {
+                change_modal_step();
+            });
+    }
+
+
     //POST inputted object to backend
     //Reservation success or failure
     async function post_booking() {
