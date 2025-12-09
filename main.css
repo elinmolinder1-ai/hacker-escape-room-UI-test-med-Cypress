@@ -50,8 +50,7 @@
   width: 40%;
   height: 79px;
   min-height: 79px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 @media screen and (min-width: 700px) {
   .header__mainlogo {
@@ -115,7 +114,7 @@
   flex-direction: column;
 }
 .header__navcontainernav a:hover {
-  background-color: #011827;
+  background-color: #021928;
   color: #36769D;
   transition: 0.3s ease;
 }
@@ -217,8 +216,7 @@
 @media screen and (min-width: 700px) {
   .hero__image {
     max-height: 468px;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
     width: 100%;
   }
 }
@@ -354,8 +352,7 @@
   }
   .service__image {
     width: 50%;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
   .service:nth-child(even) {
     flex-direction: row-reverse;
@@ -774,7 +771,7 @@
 }
 
 .button {
-  background-color: #011827;
+  background-color: #021928;
   border-radius: 0.4rem;
   border-width: 0;
   color: #fff;
@@ -785,7 +782,7 @@
 }
 .button:hover {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
   transition: 0.3s ease;
 }
 .button--red:hover {
@@ -805,7 +802,7 @@
 }
 .link:hover {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
   transition: 0.3s ease;
 }
 .link--red:hover {
@@ -819,7 +816,7 @@
   transition: 0.3s ease;
 }
 .link--dark-blue:hover {
-  background-color: #011827;
+  background-color: #021928;
   color: #36769D;
   transition: 0.3s ease;
 }
@@ -899,7 +896,7 @@
   background-color: #8ACFE5;
   border-radius: 0.4rem;
   border-width: 0;
-  color: #011827;
+  color: #021928;
   font-size: 1.6rem;
   font-weight: bold;
   padding: 0.8em 2.4em;
@@ -927,7 +924,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #011827;
+  background-color: #021928;
   text-align: center;
   color: white;
 }
@@ -952,4 +949,6 @@ img {
 
 * {
   box-sizing: border-box;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
