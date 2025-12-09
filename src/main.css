@@ -115,7 +115,7 @@
   flex-direction: column;
 }
 .header__navcontainernav a:hover {
-  background-color: #011827;
+  background-color: #021928;
   color: #36769D;
   transition: 0.3s ease;
 }
@@ -652,7 +652,7 @@
   align-items: center;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid #eee;
-  margin-bottom: 0.8rem;
+  margin: 0.8rem 0.8rem;
 }
 @media screen and (min-width: 700px) {
   .filters {
@@ -677,8 +677,8 @@
 }
 .filters__close {
   position: absolute;
-  top: 0.1rem;
-  right: 0.2rem;
+  top: 0.8rem;
+  right: 0.8rem;
   font-size: 1.6rem;
   padding: 0.3rem;
   border: 0;
@@ -699,6 +699,10 @@
 .filter__title {
   font-size: 1rem;
   margin-bottom: 0.8rem;
+}
+
+.filter:last-child {
+  margin-bottom: 0;
 }
 
 .type__option {
@@ -773,7 +777,7 @@
 
 .search-bar input {
   width: 18rem;
-  padding: 1.2rem;
+  padding: 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -796,7 +800,7 @@
 }
 
 .button {
-  background-color: #011827;
+  background-color: #021928;
   border-radius: 0.4rem;
   border-width: 0;
   color: #fff;
@@ -807,7 +811,7 @@
 }
 .button:hover {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
   transition: 0.3s ease;
 }
 .button--red:hover {
@@ -827,7 +831,7 @@
 }
 .link:hover {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
   transition: 0.3s ease;
 }
 .link--red:hover {
@@ -841,7 +845,7 @@
   transition: 0.3s ease;
 }
 .link--dark-blue:hover {
-  background-color: #011827;
+  background-color: #021928;
   color: #36769D;
   transition: 0.3s ease;
 }
@@ -921,7 +925,7 @@
   background-color: #8ACFE5;
   border-radius: 0.4rem;
   border-width: 0;
-  color: #011827;
+  color: #021928;
   font-size: 1.6rem;
   font-weight: bold;
   padding: 0.8em 2.4em;
@@ -949,7 +953,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #011827;
+  background-color: #021928;
   text-align: center;
   color: white;
 }
