@@ -234,8 +234,14 @@ async function loadBookingModal(challenge) {
 
         if (overlay) document.body.appendChild(overlay);
         if (modal) document.body.appendChild(modal); // lägg till i all.html
+
+        requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
         overlay?.classList.add('is-visible');
         modal?.classList.add('is-visible');
+          });
+        });
+        
         initialiseBookingModal(challenge);
         
     } catch (err) {
@@ -244,9 +250,8 @@ async function loadBookingModal(challenge) {
         alert('Could not open booking modal, try again later!');
 }
 }
-/*CLOSE MODAL
+/*
 modal.querySelector('.booking-overlay').addEventListener('click', () => modal.remove());
-const closeBtn = modal.querySelector('#booking-close');
+const closeBtn = modal.querySelector('#booking-close-btn');
 if(closeBtn) closeBtn.addEventListener('click', () => modal.remove());
-}
 */

@@ -50,7 +50,8 @@
   width: 40%;
   height: 79px;
   min-height: 79px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media screen and (min-width: 700px) {
   .header__mainlogo {
@@ -216,7 +217,8 @@
 @media screen and (min-width: 700px) {
   .hero__image {
     max-height: 468px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     width: 100%;
   }
 }
@@ -352,7 +354,8 @@
   }
   .service__image {
     width: 50%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .service:nth-child(even) {
     flex-direction: row-reverse;
@@ -429,16 +432,6 @@
   list-style-type: none;
 }
 
-@keyframes challenge-fade-down {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 .loading {
   border: 16px solid #B6BDB5;
   border-top: 16px solid #36769D;
@@ -471,9 +464,6 @@
 }
 .challenges__listItem {
   list-style-type: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: challenge-fade-down 2000ms ease-out forwards;
 }
 .challenges__list .challenges__listItem {
   transition: box-shadow 0.3s ease;
@@ -481,7 +471,7 @@
 .challenges__list .challenges__listItem:hover .challenge {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
 }
-.challenges__buttons {
+.challenges__list__buttons {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -489,7 +479,7 @@
   margin: 2rem 0;
 }
 @media screen and (min-width: 700px) {
-  .challenges__buttons {
+  .challenges__list {
     flex-direction: row-reverse;
   }
 }
@@ -662,7 +652,7 @@
   align-items: center;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid #eee;
-  margin-bottom: 0.8rem;
+  margin: 0.8rem 0.8rem;
 }
 @media screen and (min-width: 700px) {
   .filters {
@@ -687,8 +677,8 @@
 }
 .filters__close {
   position: absolute;
-  top: 0.1rem;
-  right: 0.2rem;
+  top: 0.8rem;
+  right: 0.8rem;
   font-size: 1.6rem;
   padding: 0.3rem;
   border: 0;
@@ -709,6 +699,10 @@
 .filter__title {
   font-size: 1rem;
   margin-bottom: 0.8rem;
+}
+
+.filter:last-child {
+  margin-bottom: 0;
 }
 
 .type__option {
@@ -783,7 +777,7 @@
 
 .search-bar input {
   width: 18rem;
-  padding: 1.2rem;
+  padding: 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -854,48 +848,6 @@
   background-color: #021928;
   color: #36769D;
   transition: 0.3s ease;
-}
-
-.main {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.contact {
-  display: flex;
-  flex-direction: column;
-}
-@media screen and (min-width: 700px) {
-  .contact {
-    flex-direction: row;
-  }
-  .contact__image {
-    width: 80%;
-    object-fit: cover;
-  }
-}
-.contact__content {
-  display: flex;
-  padding: 0;
-  flex-direction: column;
-}
-@media screen and (min-width: 700px) {
-  .contact__content {
-    padding: 5rem 0 5rem 5rem;
-    justify-content: flex-start;
-  }
-}
-.contact__title, .contact__subtitle {
-  margin: 1.5rem 1rem;
-}
-.contact__description, .contact__adress {
-  font-size: 1.3rem;
-  margin: 1rem 1rem;
-  max-width: 1100px;
-  min-width: 200px;
-}
-.contact__info {
-  list-style: none;
 }
 
 .aboutUs {
@@ -1018,7 +970,6 @@ html, body {
   font-size: 16px;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 img {
@@ -1027,6 +978,4 @@ img {
 
 * {
   box-sizing: border-box;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
