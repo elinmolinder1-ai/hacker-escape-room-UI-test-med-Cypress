@@ -1,7 +1,7 @@
 //Tests for truncateDescription function
 
-const { truncateDescription } = require("../truncateDescription");  
-
+//const { truncateDescription } = require("../truncateDescription");  
+import { truncateDescription } from "../truncateDescription.js";
 test("should truncate long descriptions", () => {
   const result = truncateDescription(
     "This is a very long description that will be truncated",

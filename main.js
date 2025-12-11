@@ -1,3 +1,4 @@
+import { truncateDescription } from "./truncateDescription.js";
 const mobilemenu = document.querySelector('.header__mainmobilenavmenu');
 const navmenu = document.querySelector('.header__navcontainer')
 const closemenu = document.querySelector('.header__navcontainernavclose')
@@ -35,8 +36,6 @@ export async function getChallenges() {
     }
 };
 
-
-
 //function to create list challenges
 export function createChallengeLi(ch) {
     const {
@@ -60,7 +59,7 @@ export function createChallengeLi(ch) {
     //Creates a li-element to hold a challenge and assigns a CSS class for styling the list
     const li = document.createElement('li');
     li.className = 'challenges__listItem';
-    
+
     //Fill the <li>-element with the HTML structure for a challenge
     li.innerHTML = `
     <article class="challenge">
@@ -90,7 +89,8 @@ export function createChallengeLi(ch) {
       <p class="challenge__description">${description}</p>
 
 <!--Checks if there are any labels in the labels array. Yes= show tags. No= no output -->
-      ${labels.length ? `<div class="challenge__labels">${labels.map(l => `<span class="tags">#${l}</span>`).join(' ')}</div>` : ''}
+      ${truncateDescription(description)}
+        ${labels.length ? `<div class="challenge__labels">${labels.map(l => `<span class="tags">#${l}</span>`).join(' ')}</div>` : ''}
         
       <div class="challenge__buttonWrapper">
       <button class="challenge__bookbutton button--red">
@@ -135,7 +135,7 @@ const loadingAnimation = document.querySelector('.loading');
 
 async function initAll() {
     try {
-        
+
         loadingAnimation.classList.remove('hidden');
         statusElAll.textContent = 'Loading challenges...';
 
@@ -210,7 +210,7 @@ async function loadFilterChallenges() {
     } catch (err) {
         console.error('loadFilterChallenges error', err);
         const statusElAll = document.querySelector('#all-status');
-    if (statusElAll) statusElAll.textContent = ' I am sorry, could not load the filter : ' + err.message;
+        if (statusElAll) statusElAll.textContent = ' I am sorry, could not load the filter : ' + err.message;
     }
 }
 
@@ -238,12 +238,12 @@ async function loadBookingModal(challenge) {
         overlay?.classList.add('is-visible');
         modal?.classList.add('is-visible');
         initialiseBookingModal(challenge);
-        
+
     } catch (err) {
         console.error(loadBookingModal, err);
         const statusElAll = document.querySelector('#all-status');
         alert('Could not open booking modal, try again later!');
-}
+    }
 }
 /*
 modal.querySelector('.booking-overlay').addEventListener('click', () => modal.remove());

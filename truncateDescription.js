@@ -1,11 +1,10 @@
 //truncateDescription function
 //Max 50 characters in challenge description
-
- function truncateDescription(description, maxLength = 50) {
-  if (description.length <= maxLength) {
+export function truncateDescription(description, maxLength = 50) {
+   if (description.length <= maxLength) {
     return description;
   }
-
+ 
   // Hitta första mellanslaget efter maxLength
   const nextSpace = description.indexOf(" ", maxLength);
 
@@ -21,4 +20,4 @@
   return description.slice(0, cutIndex).trimEnd() + "...";
 }
 
-module.exports = { truncateDescription };
+//module.exports = { truncateDescription };
