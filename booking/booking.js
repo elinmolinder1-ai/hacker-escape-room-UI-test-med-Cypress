@@ -210,30 +210,86 @@ function validate_participant_input() {
 //function to validate input and create object to send to backend for reservation
 function validate_booking_input() {
 
-    if (!name_booking.value) {
-        alert("please enter name");
+//variables to find DOM elements
+const name_booking = document.querySelector('#booking-name-input');
+const name_booking_error = document.querySelector('#booking-error-name');
+
+const phone_booking = document.querySelector('#booking-phone-input');   
+const phone_booking_error = document.querySelector('#booking-error-phone');
+
+const email_booking = document.querySelector('#booking-email-input');
+const email_booking_error = document.querySelector('#booking-error-email');
+
+const time_booking = document.querySelector('#booking-time-select');
+const time_booking_error = document.querySelector('#booking-error-time');
+
+name_booking.classList.remove('booking-input-invalid');
+phone_booking.classList.remove('booking-input-invalid');
+email_booking.classList.remove('booking-input-invalid');
+time_booking.classList.remove('booking-input-invalid');
+
+
+name_booking.addEventListener('input', () => {
+    name_booking.classList.remove('booking-input-invalid');
+    name_booking_error.textContent = "";
+}); 
+
+phone_booking.addEventListener('input', () => {
+    phone_booking.classList.remove('booking-input-invalid');
+    phone_booking_error.textContent = "";
+} );
+
+email_booking.addEventListener('input', () => {
+    email_booking.classList.remove('booking-input-invalid');
+    email_booking_error.textContent = "";
+} );
+
+time_booking.addEventListener('change', () => {
+    time_booking.classList.remove('booking-input-invalid');
+    time_booking_error.textContent = "";
+} );
+
+let valid = true;
+//alerts replaces with text content error messages
+    if (!name_booking.value.trim()) {
+    name_booking_error.textContent = "Please enter your name.";
+    name_booking.classList.add('booking-input-invalid');
+    valid = false;
+       
     }
     else {
-        if (!phone_booking.value) {
-            alert("please enter valid phone number");
+        if (!phone_booking.value.trim()) {
+         phone_booking_error.textContent = "Please enter your phone number.";
+          phone_booking.classList.add('booking-input-invalid');
+           valid = false;
+          
         }
         else {
-            if (!email_booking.value) {
-                alert("please enter valid email");
+            if (!email_booking.value.trim()) {
+                email_booking_error.textContent = "Please enter your email.";
+                email_booking.classList.add('booking-input-invalid');
+                valid = false;
+               
             }
             else {
-                if (!time_booking.value) {
-                    alert("choose a slot please");
+                if (!time_booking.value.trim()) {
+                    time_booking_error.textContent = "Please select a time.";
+                    time_booking.classList.add('booking-input-invalid');
+                    valid = false;
+                  
                 }
                 else {
                     // final participants validation
                     const participantsValid = validate_participant_input();
-                    if (!participantsValid) {
+                    if (!participantsValid) valid = false;
 
-                        return;
+                    if (!valid) {
+
+                        return false
                     }
                     else {
                         capture_booking_info();
+                        return true;
                     }
                 }
             }
