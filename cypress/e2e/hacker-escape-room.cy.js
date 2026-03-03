@@ -1,7 +1,6 @@
 
 /*** G UPPGIFT
- * * 1. Kontrollerar att webbsidan är uppe och kör på localhost
- * * 2. Visar att H2-elementet innehåller texten "Play with your friends or build your team stronger at work
+ * * 1. Kontrollerar att webbsidan är uppe och kör på localhost och Visar att H2-elementet innehåller texten "Play with your friends or build your team stronger at work
 ***/
 describe('Hacker Escape Room - startsida', () => {
 
@@ -20,7 +19,7 @@ describe('Hacker Escape Room - startsida', () => {
    * * 3. Gör något som både kan bli rätt och fel t ex sökning på datum i filter, Kontrollerar att webbsidan ger relevant ett relevant svar eller felmeddelande. (det är alltså responsen som ska testas).
   ***/
 
-  it('Hittar filtret "Include online challenges" i modalen', () => {
+  it('Letar efter filtret "Include online challenges" i modalen', () => {
 
     cy.visit('all.html'); // lokalt
 
@@ -30,7 +29,7 @@ describe('Hacker Escape Room - startsida', () => {
       .click();
 
     // 2. Vänta på att modalen visas
-    cy.get('.filters') // byt till din modals klass/id om den heter något annat
+    cy.get('.filters') 
       .should('be.visible');
 
     // 3. Leta efter labeln i modalen
@@ -83,6 +82,13 @@ describe('Hacker Escape Room - startsida', () => {
 
     // Kontrollera att inga resultat hittas
     cy.contains('No matching challenges').should('be.visible');
+  });
+
+  //Kontrollerar att sidan är deployad på netlify
+  it('Kontrollerar att sidan är uppe på Netlify', () => {
+    cy.visit('https://hacker-escape-room.netlify.app/all.html');
+    cy.contains('Filter challenges')
+    .should('be.visible');
   });
 
 });
